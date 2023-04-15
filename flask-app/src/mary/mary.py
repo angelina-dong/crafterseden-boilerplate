@@ -5,18 +5,11 @@ from src import db
 
 mary = Blueprint('mary', __name__)
 
-<<<<<<< Updated upstream
 # Get all customers from the DB
 @mary.route('/products/<productID>', methods=['GET'])
 def get_product_details(productID):
     cursor = db.get_db().cursor()
     cursor.execute('select * from products where productid = {0}'.format(productID))
-=======
-@mary.route('/mary/projects', methods=['GET'])
-def get_project():
-    cursor = db.get_db().cursor()
-    cursor.execute('select * from projects')
->>>>>>> Stashed changes
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -26,9 +19,21 @@ def get_project():
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
-<<<<<<< Updated upstream
-    
 
+@mary.route('/mary/projects', methods=['GET'])
+def get_project():
+    cursor = db.get_db().cursor()
+    cursor.execute('select * from projects')
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+    
 
 # Get customer detail for customer with particular userID
 @mary.route('/mary/<userID>', methods=['GET'])
@@ -87,7 +92,6 @@ def filter_by_weight(weight)
         json_data.append(dict(zip(column_headers, row)))
 
     return jsonify(json_data)
-=======
 
 @mary.route('/mary/projects', methods=['POST'])
 def add_new_project():
@@ -110,4 +114,3 @@ def add_new_project():
 @mary.route('/mary/projects/<projectid>', methods=['PUT'])
 def update_project(projectid):
     pass
->>>>>>> Stashed changes
