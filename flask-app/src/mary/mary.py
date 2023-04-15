@@ -34,13 +34,6 @@ def get_project():
     the_response.mimetype = 'application/json'
     return the_response
     
-
-# Get customer detail for customer with particular userID
-@mary.route('/mary/<userID>', methods=['GET'])
-def get_smthg(userID):
-    pass
-pass
-
 @mary.route('/mary/yarnProducts/weight/<weight>', methods=[GET])
 def filter_by_weight(weight)
     query = '''
@@ -68,7 +61,7 @@ def filter_by_weight(weight)
     return jsonify(json_data)
 
 @mary.route('/mary/yarnProducts/fiber/<fiber>', methods=[GET])
-def filter_by_weight(weight)
+def filter_by_fiber(fiber)
     query = '''
             SELECT *
             FROM yarnProducts
@@ -114,3 +107,20 @@ def add_new_project():
 @mary.route('/mary/projects/<projectid>', methods=['PUT'])
 def update_project(projectid):
     pass
+
+@mary.route('/mary/projects', methods=['POST'])
+def add_new_review():
+    the_data = request.get_json()
+    username = the_data['Username']
+    photos = the_data['photos']
+    rating = the_data['Rating']
+    writtenReview = the_data['WrittenReview']
+    reviewID = the_data['ReviewID']
+    current_app.logger.info(the_data)
+    the_query = "insert into projects (username, hobby, hours, reviewID, photos, productsUsed)"
+    the_query += "values ('" + username + "', '" + photos + "','" + rating + "','" + writtenReview + "','" + reviewID + ")"
+    current_app.logger.info(the_query)
+    cursor = db.get_db().cursor()
+    cursor.execute(the_query)
+    db.get_db().commit()
+    return "success!"
