@@ -11,5 +11,12 @@ pass
 
 # Get customer detail for customer with particular userID
 @mary.route('/mary/<userID>', methods=['GET'])
+<<<<<<< HEAD
 def get_smthg(userID):
     pass
+=======
+pass
+
+@mary.route('/mary/yarnProducts/weight/{weight}')
+pass
+>>>>>>> e0aa61eb15808b89fbd0863fd412d2e8d31813cb
