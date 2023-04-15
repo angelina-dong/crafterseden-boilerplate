@@ -102,11 +102,21 @@ def add_new_project():
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
     db.get_db().commit()
-    return "success!"
 
+    
 @mary.route('/mary/projects/<projectid>', methods=['PUT'])
 def update_project(projectid):
-    pass
+    photos = the_data['Photos']
+    hours = the_data['Hours']
+    productsUsed = the_data['ProductsUsed']
+    current_app.logger.info(the_data)
+    the_query = "update projects"
+    the_query += "set Photos = '" + photos + "', hours = '" + hours + "', ProductsUsed = '" + productsUsed + ")"
+    the_query += "where projectid =" + projectid
+    current_app.logger.info(the_query)
+    cursor = db.get_db().cursor()
+    cursor.execute(the_query)
+    db.get_db().commit()
 
 @mary.route('/mary/projects', methods=['POST'])
 def add_new_review():
@@ -119,8 +129,8 @@ def add_new_review():
     current_app.logger.info(the_data)
     the_query = "insert into projects (username, hobby, hours, reviewID, photos, productsUsed)"
     the_query += "values ('" + username + "', '" + photos + "','" + rating + "','" + writtenReview + "','" + reviewID + ")"
+    the_data = request.get_json()
     current_app.logger.info(the_query)
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
     db.get_db().commit()
-    return "success!"
