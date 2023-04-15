@@ -11,4 +11,5 @@ pass
 
 # Get customer detail for customer with particular userID
 @mary.route('/mary/<userID>', methods=['GET'])
-pass
+def get_smthg(userID):
+    pass
