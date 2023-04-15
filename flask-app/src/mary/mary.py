@@ -97,7 +97,7 @@ def add_new_project():
     productsUsed = the_data['ProductsUsed']
     current_app.logger.info(the_data)
     the_query = "insert into projects (username, hobby, hours, reviewID, photos, productsUsed)"
-    the_query += "values ('" + username + "', '" + hobby + "','" + hours + "','" + reviewID + "','" + photos + "','" + productsUsed + ")"
+    the_query += "values ('" + username + "', '" + hobby + "','" + str(hours) + "','" + str(reviewID) + "','" + photos + "','" + str(productsUsed) + ")"
     current_app.logger.info(the_query)
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
@@ -111,7 +111,7 @@ def update_project(projectid):
     productsUsed = the_data['ProductsUsed']
     current_app.logger.info(the_data)
     the_query = "update projects"
-    the_query += "set Photos = '" + photos + "', hours = '" + hours + "', ProductsUsed = '" + productsUsed + ")"
+    the_query += "set Photos = '" + photos + "', hours = '" + str(hours) + "', ProductsUsed = '" + str(productsUsed) + ")"
     the_query += "where projectid =" + projectid
     current_app.logger.info(the_query)
     cursor = db.get_db().cursor()
@@ -128,7 +128,7 @@ def add_new_review():
     reviewID = the_data['ReviewID']
     current_app.logger.info(the_data)
     the_query = "insert into projects (username, hobby, hours, reviewID, photos, productsUsed)"
-    the_query += "values ('" + username + "', '" + photos + "','" + rating + "','" + writtenReview + "','" + reviewID + ")"
+    the_query += "values ('" + username + "', '" + photos + "','" + str(rating) + "','" + writtenReview + "','" + reviewID + ")"
     the_data = request.get_json()
     current_app.logger.info(the_query)
     cursor = db.get_db().cursor()
