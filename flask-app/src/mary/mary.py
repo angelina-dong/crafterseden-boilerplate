@@ -134,3 +134,30 @@ def add_new_review():
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
     db.get_db().commit()
+
+@mary.route('/orders/<customerID>', methods=[GET])
+def get_past_orders(fiber)
+    query = '''
+            SELECT *
+            FROM orders 
+            JOIN orderDetails
+            WHERE customerID = customerID
+            ORDER BY orderDate DESC
+        '''
+    
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+
+    column_headers = [x[0] for x in cursor.description]
+    
+    json_data = []
+
+    # fetch all the data from the cursor
+    theData = cursor.fetchall()
+
+    # for each of the rows, zip the data elements together with
+    # the column headers. 
+    for row in theData:
+        json_data.append(dict(zip(column_headers, row)))
+
+    return jsonify(json_data)
