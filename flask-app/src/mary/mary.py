@@ -12,3 +12,6 @@ pass
 # Get customer detail for customer with particular userID
 @mary.route('/mary/<userID>', methods=['GET'])
 pass
+
+@mary.route('/mary/yarnProducts/weight/{weight}')
+pass
