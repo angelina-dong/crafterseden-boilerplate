@@ -20,7 +20,7 @@ def get_product_details(productID):
     the_response.mimetype = 'application/json'
     return the_response
 
-@mary.route('/mary/projects', methods=['GET'])
+@mary.route('/projects', methods=['GET'])
 def get_project():
     cursor = db.get_db().cursor()
     cursor.execute('select * from projects')
@@ -34,7 +34,7 @@ def get_project():
     the_response.mimetype = 'application/json'
     return the_response
     
-@mary.route('/mary/yarnProducts/weight/<weight>', methods=[GET])
+@mary.route('/yarnProducts/weight/<weight>', methods=[GET])
 def filter_by_weight(weight)
     query = '''
             SELECT *
@@ -45,7 +45,7 @@ def filter_by_weight(weight)
     
     cursor = db.get_db().cursor()
     cursor.execute(query)
-
+    
     column_headers = [x[0] for x in cursor.description]
     
     json_data = []
@@ -60,7 +60,7 @@ def filter_by_weight(weight)
 
     return jsonify(json_data)
 
-@mary.route('/mary/yarnProducts/fiber/<fiber>', methods=[GET])
+@mary.route('/yarnProducts/fiber/<fiber>', methods=[GET])
 def filter_by_fiber(fiber)
     query = '''
             SELECT *
@@ -86,7 +86,7 @@ def filter_by_fiber(fiber)
 
     return jsonify(json_data)
 
-@mary.route('/mary/projects', methods=['POST'])
+@mary.route('/projects', methods=['POST'])
 def add_new_project():
     the_data = request.get_json()
     username = the_data['Username']
@@ -104,7 +104,7 @@ def add_new_project():
     db.get_db().commit()
 
     
-@mary.route('/mary/projects/<projectid>', methods=['PUT'])
+@mary.route('/projects/<projectid>', methods=['PUT'])
 def update_project(projectid):
     photos = the_data['Photos']
     hours = the_data['Hours']
@@ -118,7 +118,7 @@ def update_project(projectid):
     cursor.execute(the_query)
     db.get_db().commit()
 
-@mary.route('/mary/projects', methods=['POST'])
+@mary.route('/projects', methods=['POST'])
 def add_new_review():
     the_data = request.get_json()
     username = the_data['Username']
@@ -135,6 +135,7 @@ def add_new_review():
     cursor.execute(the_query)
     db.get_db().commit()
 
+<<<<<<< Updated upstream
 @mary.route('/orders/<customerID>', methods=[GET])
 def get_past_orders(fiber)
     query = '''
@@ -161,3 +162,18 @@ def get_past_orders(fiber)
         json_data.append(dict(zip(column_headers, row)))
 
     return jsonify(json_data)
+=======
+@mary.route('/orders/<OrderID>/shipments', methods=['DELETE'])
+def delete_order(orderID):
+    cursor = db.get_db().cursor()
+    cursor.execute('delete from Shipments WHERE OrderID =' + orderID)
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+>>>>>>> Stashed changes
