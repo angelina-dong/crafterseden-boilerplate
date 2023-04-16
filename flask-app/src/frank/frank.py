@@ -8,9 +8,9 @@ frank = Blueprint('frank', __name__)
 @frank.route('/products', method = ['POST'])
 def handle_new_product():
     name = request.json['name']
-    unitsOnOrder = request.json['unitsOnOrder']
+    unitsOnOrder = 0
     unitsInStock = request.json['unitsInStock']
-    dateAdded = request.json['dateAdded']
+    # dateAdded = request.json['dateAdded']
     supplierID = request.json['supplierID']
     name = request.json['name']
     brand = request.json['brand']
@@ -37,8 +37,8 @@ def handle_new_product():
     for row in the_data:
         beadID = row[0]
     
-    query = 'insert into Product (SupplierID, UnitsOnOrder, UnitsInStock, DateAdded, BeadID)\n'
-    query += 'values (\'' + supplierID + '\', ' + str(unitsOnOrder) + ', ' + str(unitsInStock) + ', ' + str(dateAdded) + ', ' + str(beadID) + ');'
+    query = 'insert into Products (SupplierID, UnitsOnOrder, UnitsInStock, DateAdded, BeadID)\n'
+    query += 'values (\'' + supplierID + '\', ' + str(unitsOnOrder) + ', ' + str(unitsInStock) + ', ' + str(beadID) + ');'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
