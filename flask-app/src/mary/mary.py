@@ -5,7 +5,6 @@ from src import db
 
 mary = Blueprint('mary', __name__)
 
-# Get all customers from the DB
 @mary.route('/products/<productID>', methods=['GET'])
 def get_product_details(productID):
     cursor = db.get_db().cursor()
@@ -19,8 +18,6 @@ def get_product_details(productID):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
-
-
 
 @mary.route('/yarnProducts/weight/<weight>', methods=[GET])
 def filter_by_weight(weight):
@@ -75,7 +72,7 @@ def filter_by_fiber(fiber):
     return jsonify(json_data)
 
 @mary.route('/orders/<customerID>', methods=[GET])
-def get_past_orders(fiber):
+def get_past_orders():
     query = '''
             SELECT *
             FROM orders 
@@ -164,10 +161,10 @@ def update_project(projectid):
     cursor.execute(the_query)
     db.get_db().commit()
 
-@mary.route('/orders/<OrderID>/shipments', methods=['DELETE'])
+@mary.route('/orders/<OrderID>', methods=['DELETE'])
 def delete_order(orderID):
     cursor = db.get_db().cursor()
-    cursor.execute('delete from Shipments WHERE OrderID =' + orderID)
+    cursor.execute('delete from Orders WHERE OrderID =' + orderID)
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()

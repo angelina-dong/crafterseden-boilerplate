@@ -8,22 +8,22 @@ frank = Blueprint('frank', __name__)
 @frank.route('/products', method = ['POST'])
 def handle_new_product():
     name = request.json['name']
-    units_on_order = request.json['units_on_order']
-    units_in_stock = request.json['units_in_stock']
-    date_added = request.json['date_added']
-    supplier_id = request.json['supplier_id']
+    unitsOnOrder = request.json['unitsOnOrder']
+    unitsInStock = request.json['unitsInStock']
+    dateAdded = request.json['dateAdded']
+    supplierID = request.json['supplierID']
     name = request.json['name']
     brand = request.json['brand']
     size = request.json['size']
     color = request.json['color']
     material = request.json['material']
-    unit_price = request.json['unit_price']
+    unitPrice = request.json['unitPrice']
     photos = request.json['photos']
-    manufacturing_country = request.json['manufacturing_country']
+    manufacturingCountry = request.json['manufacturingCountry']
 
     query = 'insert into BeadProduct (Brand, Size, Color, Material, UnitPrice, Photos, ManufacturingCountry, Name)\n'
     query += 'values (\'' + brand + '\', ' + str(size) + ', \'' + color + '\', \'' + material + '\', '
-    query += str(unit_price) + ', \'' + photos + '\', \'' + manufacturing_country + '\', \'' + name + '\');'
+    query += str(unitPrice) + ', \'' + photos + '\', \'' + manufacturingCountry + '\', \'' + name + '\');'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
@@ -33,39 +33,39 @@ def handle_new_product():
     cursor.exectue(query)
     db.get_db().commit()
     the_data = cursor.fetchall()
-    bead_id = 0
+    beadID = 0
     for row in the_data:
-        bead_id = row[0]
+        beadID = row[0]
     
     query = 'insert into Product (SupplierID, UnitsOnOrder, UnitsInStock, DateAdded, BeadID)\n'
-    query += 'values (\'' + supplier_id + '\', ' + str(units_on_order) + ', ' + str(units_in_stock) + ', ' + str(date_added) + ', ' + str(bead_id) + ');'
+    query += 'values (\'' + supplierID + '\', ' + str(unitsOnOrder) + ', ' + str(unitsInStock) + ', ' + str(dateAdded) + ', ' + str(beadID) + ');'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
 
 
 @frank.route('/products/<productID>', method = ['PUT'])
-def handle_update_product(product_id):
-    unit_price = request.json['unit_price']
-    units_in_stock = request.json['units_in_stock']
+def handle_update_product(productID):
+    unitPrice = request.json['unitPrice']
+    unitsInStock = request.json['unitInStock']
 
-    query = 'update Products set UnitPrice = ' + str(unit_price) + ', UnitsInStock = ' + str(units_in_stock) + ' where ProductID = ' + str(product_id) + ';'
+    query = 'update Products set UnitPrice = ' + str(unitPrice) + ', UnitsInStock = ' + str(unitsInStock) + ' where ProductID = ' + str(productID) + ';'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
 
 
 @frank.route('/products/<productID>', method = ['DELETE'])
-def handle_remove_product(product_id):
-    query = 'delete from Products where ProductID = ' + str(product_id) + ';'
+def handle_remove_product(productID):
+    query = 'delete from Products where ProductID = ' + str(productID) + ';'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
 
 
-@frank.route('/products/inStock', method = ['GET'])
-def handle_get_in_stock():
-    query = 'select * from Products where UnitsInStock > 0;'
+@frank.route('/products/inStock/suppliers/supplierID', method = ['GET'])
+def handle_get_in_stock(supplierID):
+    query = 'select * from Products where UnitsInStock > 0 and SupplierID = ' + str(supplierID) + ';'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
@@ -82,8 +82,8 @@ def handle_get_in_stock():
 
 
 @frank.route('/orderDetails/<supplierID>', method = ['GET'])
-def handle_get_supplier_orders(supplier_id):
-    query = 'select * from OrderDetails join Products where SupplierID = ' + str(supplier_id) + ';'
+def handle_get_supplier_orders(supplierID):
+    query = 'select * from OrderDetails join Products where SupplierID = ' + str(supplierID) + ';'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
@@ -100,8 +100,8 @@ def handle_get_supplier_orders(supplier_id):
 
 
 @frank.route('/reviews/<product_id>', method = ['GET'])
-def handle_get_product_reviews(product_id):
-    query = 'select * from Reviews where ProductID = ' + str(product_id) + ';'
+def handle_get_product_reviews(productID):
+    query = 'select * from Reviews where ProductID = ' + str(productID) + ';'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
@@ -119,21 +119,21 @@ def handle_get_product_reviews(product_id):
 
 @frank.route('/shipments', method = ['POST'])
 def handle_new_shipment():
-    order_id = request.json['order_id']
-    customer_id = request.json['customer_id']
-    order_date = request.json['order_date']
+    orderID = request.json['orderID']
+    customerID = request.json['customerID']
+    orderDate = request.json['orderDate']
     price = request.json['price']
 
     query = 'insert into Shipments (OrderID, CustomerID, OrderDate, Price)\n'
-    query += 'values (' + str(order_id) + ', ' + str(customer_id) + ', \'' + order_date + '\', ' + str(price) + ');'
+    query += 'values (' + str(orderID) + ', ' + str(customerID) + ', \'' + orderDate + '\', ' + str(price) + ');'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
 
 
 @frank.route('/orders/<orderID>', method = ['DELETE'])
-def handle_remove_order(order_id):
-    query = 'delete from Orders where OrderID = ' + str(order_id) + ';'
+def handle_remove_order(orderID):
+    query = 'delete from Orders where OrderID = ' + str(orderID) + ';'
     cursor = db.get_db().cursor()
     cursor.exectue(query)
     db.get_db().commit()
