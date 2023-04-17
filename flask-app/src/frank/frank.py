@@ -5,7 +5,7 @@ from src import db
 
 frank = Blueprint('frank', __name__)
 
-@frank.route('/products', method = ['POST'])
+@frank.route('/products', methods = ['POST'])
 def handle_new_product():
     name = request.json['name']
     unitsOnOrder = 0
@@ -44,7 +44,7 @@ def handle_new_product():
     db.get_db().commit()
 
 
-@frank.route('/products/<productID>', method = ['PUT'])
+@frank.route('/products/<productID>', methods = ['PUT'])
 def handle_update_product(productID):
     unitPrice = request.json['unitPrice']
     unitsInStock = request.json['unitInStock']
@@ -55,7 +55,7 @@ def handle_update_product(productID):
     db.get_db().commit()
 
 
-@frank.route('/products/<productID>', method = ['DELETE'])
+@frank.route('/products/<productID>', methods = ['DELETE'])
 def handle_remove_product(productID):
     query = 'delete from Products where ProductID = ' + str(productID) + ';'
     cursor = db.get_db().cursor()
@@ -63,7 +63,7 @@ def handle_remove_product(productID):
     db.get_db().commit()
 
 
-@frank.route('/products/inStock/suppliers/supplierID', method = ['GET'])
+@frank.route('/products/inStock/suppliers/supplierID', methods = ['GET'])
 def handle_get_in_stock(supplierID):
     query = 'select * from Products where UnitsInStock > 0 and SupplierID = ' + str(supplierID) + ';'
     cursor = db.get_db().cursor()
@@ -81,7 +81,7 @@ def handle_get_in_stock(supplierID):
     return the_response
 
 
-@frank.route('/orderDetails/<supplierID>', method = ['GET'])
+@frank.route('/orderDetails/<supplierID>', methods = ['GET'])
 def handle_get_supplier_orders(supplierID):
     query = 'select * from OrderDetails join Products where SupplierID = ' + str(supplierID) + ';'
     cursor = db.get_db().cursor()
@@ -99,7 +99,7 @@ def handle_get_supplier_orders(supplierID):
     return the_response
 
 
-@frank.route('/reviews/<product_id>', method = ['GET'])
+@frank.route('/reviews/<product_id>', methods = ['GET'])
 def handle_get_product_reviews(productID):
     query = 'select * from Reviews where ProductID = ' + str(productID) + ';'
     cursor = db.get_db().cursor()
@@ -117,7 +117,7 @@ def handle_get_product_reviews(productID):
     return the_response
 
 
-@frank.route('/shipments', method = ['POST'])
+@frank.route('/shipments', methods = ['POST'])
 def handle_new_shipment():
     orderID = request.json['orderID']
     customerID = request.json['customerID']
@@ -131,7 +131,7 @@ def handle_new_shipment():
     db.get_db().commit()
 
 
-@frank.route('/orders/<orderID>', method = ['DELETE'])
+@frank.route('/orders/<orderID>', methods = ['DELETE'])
 def handle_remove_order(orderID):
     query = 'delete from Orders where OrderID = ' + str(orderID) + ';'
     cursor = db.get_db().cursor()
