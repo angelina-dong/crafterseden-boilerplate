@@ -19,7 +19,7 @@ def get_product_details(productID):
     the_response.mimetype = 'application/json'
     return the_response
 
-@mary.route('/yarnProducts/weight/<weight>', methods=[GET])
+@mary.route('/yarnProducts/weight/<weight>', methods=['GET'])
 def filter_by_weight(weight):
     query = '''
             SELECT *
@@ -45,7 +45,7 @@ def filter_by_weight(weight):
 
     return jsonify(json_data)
 
-@mary.route('/yarnProducts/fiber/<fiber>', methods=[GET])
+@mary.route('/yarnProducts/fiber/<fiber>', methods=['GET'])
 def filter_by_fiber(fiber):
     query = '''
             SELECT *
@@ -71,7 +71,7 @@ def filter_by_fiber(fiber):
 
     return jsonify(json_data)
 
-@mary.route('/orders/<customerID>', methods=[GET])
+@mary.route('/orders/<customerID>', methods=['GET'])
 def get_past_orders():
     query = '''
             SELECT *
