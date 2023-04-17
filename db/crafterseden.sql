@@ -1,5 +1,6 @@
-CREATE DATABASE IF NOT EXISTS CraftersEdenDB;
-USE CraftersEdenDB;
+DROP SCHEMA IF EXISTS crafterseden ;
+CREATE SCHEMA IF NOT EXISTS crafterseden;
+USE crafterseden;
 
 #  drop table YarnProduct, BeadProduct, PaintProduct, Products,
 #     Projects, Patterns, Reviews, Orders, OrderDetails, Customers, Suppliers, Shipments;

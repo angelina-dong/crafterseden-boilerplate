@@ -19,7 +19,7 @@ def create_app():
     app.config['MYSQL_DATABASE_PASSWORD'] = open('/secrets/db_password.txt').readline()
     app.config['MYSQL_DATABASE_HOST'] = 'db'
     app.config['MYSQL_DATABASE_PORT'] = 3306
-    app.config['MYSQL_DATABASE_DB'] = 'northwind'  # Change this to your DB name
+    app.config['MYSQL_DATABASE_DB'] = 'crafterseden'  # Change this to your DB name
 
     # Initialize the database object with the settings above. 
     db.init_app(app)
@@ -30,7 +30,6 @@ def create_app():
         return "<h1>Welcome to the 3200 boilerplate app</h1>"
 
     # Import the various routes
-    from src.views import views
     from src.mary.mary import mary
     from src.frank.frank  import frank
 

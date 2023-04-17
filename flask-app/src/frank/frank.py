@@ -63,7 +63,7 @@ def handle_remove_product(productID):
     db.get_db().commit()
 
 
-@frank.route('/products/inStock/suppliers/supplierID', methods = ['GET'])
+@frank.route('/products/inStock/suppliers/<supplierID>', methods = ['GET'])
 def handle_get_in_stock(supplierID):
     query = 'select * from Products where UnitsInStock > 0 and SupplierID = ' + str(supplierID) + ';'
     cursor = db.get_db().cursor()
@@ -99,7 +99,7 @@ def handle_get_supplier_orders(supplierID):
     return the_response
 
 
-@frank.route('/reviews/<product_id>', methods = ['GET'])
+@frank.route('/reviews/<productID>', methods = ['GET'])
 def handle_get_product_reviews(productID):
     query = 'select * from Reviews where ProductID = ' + str(productID) + ';'
     cursor = db.get_db().cursor()

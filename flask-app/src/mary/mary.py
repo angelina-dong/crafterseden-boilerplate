@@ -72,7 +72,7 @@ def filter_by_fiber(fiber):
     return jsonify(json_data)
 
 @mary.route('/orders/<customerID>', methods=['GET'])
-def get_past_orders():
+def get_past_orders(customerID):
     query = '''
             SELECT *
             FROM orders 

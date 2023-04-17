@@ -1,4 +1,4 @@
-USE CraftersEdenDB;
+USE crafterseden;
 
 -- Dumping data for table Customers
 SET AUTOCOMMIT=0;
