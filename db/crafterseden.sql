@@ -89,16 +89,16 @@ CREATE TABLE IF NOT EXISTS Products
 
 CREATE TABLE IF NOT EXISTS Reviews
 (
-    ReviewID      bigint AUTO_INCREMENT,
-    ProductID     bigint
+    ReviewID      bigint AUTO_INCREMENT PRIMARY KEY,
+    -- ProductID     bigint,
     Username      varchar(50) NOT NULL,
     Photos        blob,
     Rating        int         NOT NULL,
     WrittenReview varchar(500),
-    PRIMARY KEY(ReviewID, ProductID)
-    FOREIGN KEY(ProductID)
-        REFERENCES Products(ProductID)
-        ON UPDATE CASCADE ON DELETE CASCADE
+    -- PRIMARY KEY(ReviewID, ProductID)
+    -- FOREIGN KEY(ProductID)
+    --     REFERENCES Products(ProductID)
+    --     ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (Username)
         REFERENCES Customers (Username)
         ON UPDATE CASCADE ON DELETE CASCADE
