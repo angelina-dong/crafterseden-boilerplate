@@ -25,12 +25,12 @@ def handle_new_product():
     query += 'values (\'' + brand + '\', ' + str(size) + ', \'' + color + '\', \'' + material + '\', '
     query += str(unitPrice) + ', \'' + photos + '\', \'' + manufacturingCountry + '\', \'' + name + '\');'
     cursor = db.get_db().cursor()
-    cursor.exectue(query)
+    cursor.execute(query)
     db.get_db().commit()
 
     query = 'select BeadID from BeadProduct where name = ' + name + ';'
 
-    cursor.exectue(query)
+    cursor.execute(query)
     db.get_db().commit()
     the_data = cursor.fetchall()
     beadID = 0
@@ -40,7 +40,7 @@ def handle_new_product():
     query = 'insert into Products (SupplierID, UnitsOnOrder, UnitsInStock, DateAdded, BeadID)\n'
     query += 'values (\'' + supplierID + '\', ' + str(unitsOnOrder) + ', ' + str(unitsInStock) + ', ' + str(beadID) + ');'
     cursor = db.get_db().cursor()
-    cursor.exectue(query)
+    cursor.executetue(query)
     db.get_db().commit()
 
 
@@ -51,7 +51,7 @@ def handle_update_product(productID):
 
     query = 'update Products set UnitPrice = ' + str(unitPrice) + ', UnitsInStock = ' + str(unitsInStock) + ' where ProductID = ' + str(productID) + ';'
     cursor = db.get_db().cursor()
-    cursor.exectue(query)
+    cursor.execute(query)
     db.get_db().commit()
 
 
@@ -59,7 +59,7 @@ def handle_update_product(productID):
 def handle_remove_product(productID):
     query = 'delete from Products where ProductID = ' + str(productID) + ';'
     cursor = db.get_db().cursor()
-    cursor.exectue(query)
+    cursor.execute(query)
     db.get_db().commit()
 
 
@@ -67,7 +67,7 @@ def handle_remove_product(productID):
 def handle_get_in_stock(supplierID):
     query = 'select * from Products where UnitsInStock > 0 and SupplierID = ' + str(supplierID) + ';'
     cursor = db.get_db().cursor()
-    cursor.exectue(query)
+    cursor.execute(query)
     db.get_db().commit()
 
     row_headers = [x[0] for x in cursor.description]
@@ -85,7 +85,7 @@ def handle_get_in_stock(supplierID):
 def handle_get_supplier_orders(supplierID):
     query = 'select * from OrderDetails join Products where SupplierID = ' + str(supplierID) + ';'
     cursor = db.get_db().cursor()
-    cursor.exectue(query)
+    cursor.execute(query)
     db.get_db().commit()
 
     row_headers = [x[0] for x in cursor.description]
@@ -101,9 +101,9 @@ def handle_get_supplier_orders(supplierID):
 
 @frank.route('/reviews/<productID>', methods = ['GET'])
 def handle_get_product_reviews(productID):
-    query = 'select * from Reviews where ProductID = ' + str(productID) + ';'
+    query = 'select * from Reviews where ProductID = ' + str(productID) + ' ;'
     cursor = db.get_db().cursor()
-    cursor.exectue(query)
+    cursor.execute(query)
     db.get_db().commit()
 
     row_headers = [x[0] for x in cursor.description]
@@ -127,7 +127,7 @@ def handle_new_shipment():
     query = 'insert into Shipments (OrderID, CustomerID, OrderDate, Price)\n'
     query += 'values (' + str(orderID) + ', ' + str(customerID) + ', \'' + orderDate + '\', ' + str(price) + ');'
     cursor = db.get_db().cursor()
-    cursor.exectue(query)
+    cursor.execute(query)
     db.get_db().commit()
 
 
@@ -135,6 +135,6 @@ def handle_new_shipment():
 def handle_remove_order(orderID):
     query = 'delete from Orders where OrderID = ' + str(orderID) + ';'
     cursor = db.get_db().cursor()
-    cursor.exectue(query)
+    cursor.execute(query)
     db.get_db().commit()
 

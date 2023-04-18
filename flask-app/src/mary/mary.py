@@ -8,7 +8,7 @@ mary = Blueprint('mary', __name__)
 @mary.route('/products/<productID>', methods=['GET'])
 def get_product_details(productID):
     cursor = db.get_db().cursor()
-    cursor.execute('select * from products where productid = {0}'.format(productID))
+    cursor.execute('select * from Products where ProductID = ' + str(productID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -19,14 +19,9 @@ def get_product_details(productID):
     the_response.mimetype = 'application/json'
     return the_response
 
-@mary.route('/yarnProducts/weight/<weight>', methods=['GET'])
+@mary.route('/yarnProduct/weight/<weight>', methods=['GET'])
 def filter_by_weight(weight):
-    query = '''
-            SELECT *
-            FROM yarnProducts
-            WHERE yarnProducts.weight = weight
-            ORDER BY name ASC
-        '''
+    query = 'SELECT * FROM YarnProduct WHERE YarnWeight = ' + str(weight) +' ORDER BY ProductName ASC'
     
     cursor = db.get_db().cursor()
     cursor.execute(query)
@@ -45,13 +40,13 @@ def filter_by_weight(weight):
 
     return jsonify(json_data)
 
-@mary.route('/yarnProducts/fiber/<fiber>', methods=['GET'])
+@mary.route('/yarnProduct/fiber/<fiber>', methods=['GET'])
 def filter_by_fiber(fiber):
     query = '''
             SELECT *
-            FROM yarnProducts
-            WHERE yarnProducts.fiber = fiber
-            ORDER BY name ASC
+            FROM YarnProduct
+            WHERE Fiber = fiber
+            ORDER BY ProductName ASC
         '''
     
     cursor = db.get_db().cursor()
@@ -75,10 +70,10 @@ def filter_by_fiber(fiber):
 def get_past_orders(customerID):
     query = '''
             SELECT *
-            FROM orders 
-            JOIN orderDetails
-            WHERE customerID = customerID
-            ORDER BY orderDate DESC
+            FROM Orders 
+            JOIN OrderDetails
+            WHERE CustomerID = customerID
+            ORDER BY OrderDate DESC
         '''
     
     cursor = db.get_db().cursor()
@@ -102,13 +97,13 @@ def get_past_orders(customerID):
 def add_new_review():
     the_data = request.get_json()
     username = the_data['Username']
-    photos = the_data['photos']
+    photos = the_data['Photos']
     rating = the_data['Rating']
     writtenReview = the_data['WrittenReview']
     reviewID = the_data['ReviewID']
     current_app.logger.info(the_data)
-    the_query = "insert into projects (username, photos, rating, writtenReview, reviewID)"
-    the_query += "values ('" + username + "', '" + photos + "','" + str(rating) + "','" + writtenReview + "','" + reviewID + ")"
+    the_query = "insert into Projects (Username, Photos, Eating, WrittenReview, ReviewID)"
+    the_query += "values ('" + str(username) + "', '" + str(photos) + "','" + str(rating) + "','" + str(writtenReview) + "','" + str(reviewID) + ")"
     the_data = request.get_json()
     current_app.logger.info(the_query)
     cursor = db.get_db().cursor()
@@ -118,7 +113,7 @@ def add_new_review():
 @mary.route('/projects', methods=['GET'])
 def get_project():
     cursor = db.get_db().cursor()
-    cursor.execute('select * from projects')
+    cursor.execute('select * from Projects')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -136,11 +131,11 @@ def add_new_project():
     hobby = the_data['Hobby']
     hours = the_data['Hours']
     reviewID = the_data['ReviewID']
-    photos = the_data['photos']
+    photos = the_data['Photos']
     productsUsed = the_data['ProductsUsed']
     current_app.logger.info(the_data)
-    the_query = "insert into projects (username, hobby, hours, reviewID, photos, productsUsed)"
-    the_query += "values ('" + username + "', '" + hobby + "','" + str(hours) + "','" + str(reviewID) + "','" + photos + "','" + str(productsUsed) + ")"
+    the_query = "insert into Projects (Username, Hobby, Hours, ReviewID, Photos, ProductsUsed)"
+    the_query += "values ('" + str(username) + "', '" + str(hobby) + "','" + str(hours) + "','" + str(reviewID) + "','" + str(photos) + "','" + str(productsUsed) + ")"
     current_app.logger.info(the_query)
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
@@ -153,9 +148,9 @@ def update_project(projectid):
     hours = the_data['Hours']
     productsUsed = the_data['ProductsUsed']
     current_app.logger.info(the_data)
-    the_query = "update projects"
-    the_query += "set Photos = '" + photos + "', hours = '" + str(hours) + "', ProductsUsed = '" + str(productsUsed) + ")"
-    the_query += "where projectid =" + projectid
+    the_query = "update Projects"
+    the_query += "set Photos = '" + str(photos) + "', Hours = '" + str(hours) + "', ProductsUsed = '" + str(productsUsed) + ")"
+    the_query += "where ProjectID =" + projectid
     current_app.logger.info(the_query)
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
@@ -164,7 +159,7 @@ def update_project(projectid):
 @mary.route('/orders/<OrderID>', methods=['DELETE'])
 def delete_order(orderID):
     cursor = db.get_db().cursor()
-    cursor.execute('delete from Orders WHERE OrderID =' + orderID)
+    cursor.execute('delete from Orders WHERE OrderID =' + str(orderID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
