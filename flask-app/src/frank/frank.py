@@ -47,13 +47,10 @@ def handle_new_product():
 
 @frank.route('/products/<productID>', methods = ['PUT'])
 def handle_update_product(productID):
-    unitPrice = request.json['unitPrice']
-    unitsInStock = request.json['unitInStock']
-
+    unitPrice = request.json['UnitPrice']
+    unitsInStock = request.json['UnitsInStock']
     query = 'update Products set UnitPrice = ' + str(unitPrice) + ', UnitsInStock = ' + str(unitsInStock) + ' where ProductID = ' + str(productID) + ';'
-    cursor = db.get_db().cursor()
-    cursor.execute(query)
-    db.get_db().commit()
+    current_app.logger.info(query)
     return "Success!"
 
 
@@ -122,16 +119,18 @@ def handle_get_product_reviews(productID):
 
 @frank.route('/shipments', methods = ['POST'])
 def handle_new_shipment():
-    orderID = request.json['orderID']
-    customerID = request.json['customerID']
-    orderDate = request.json['orderDate']
-    price = request.json['price']
 
-    query = 'insert into Shipments (OrderID, CustomerID, OrderDate, Price)\n'
-    query += 'values (' + str(orderID) + ', ' + str(customerID) + ', \'' + str(orderDate) + '\', ' + str(price) + ');'
-    cursor = db.get_db().cursor()
-    cursor.execute(query)
-    db.get_db().commit()
+    orderID = request.json['OrderID']
+    customerID = request.json['CustomerID']
+    orderDate = request.json['OrderDate']
+    price = request.json['Price']
+   
+    query = 'insert into Shipments (OrderID, CustomerID, OrderDate, Price) values ('
+    query += str(orderID) + "', '"
+    query+= str(customerID) + "', '"
+    query += orderDate + "', '"
+    query += str(price) + ')'
+    current_app.logger.info(query)
     return "Success!"
 
 

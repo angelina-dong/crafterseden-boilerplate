@@ -183,6 +183,7 @@
     "tests": []
   },
   {
+<<<<<<< Updated upstream
     "_id": "dc0294bf-6b46-4b1e-947e-72185c18471c",
     "colId": "fb124c18-e75d-464d-934e-985352d44341",
     "containerId": "",
@@ -192,16 +193,116 @@
     "sortNum": 150000,
     "created": "2023-04-19T05:28:50.829Z",
     "modified": "2023-04-19T05:42:59.706Z",
+=======
+    "_id": "f7f2dc60-2d2f-470e-831e-393da69d085a",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_get_in_stock 1",
+    "url": "localhost:8001/f/products/inStock/suppliers/1",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-04-19T05:24:36.077Z",
+    "modified": "2023-04-19T05:24:48.424Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "27bce814-4000-41d4-80d0-2c5e3e49f6f3",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_get_in_stock 2",
+    "url": "localhost:8001/f/products/inStock/suppliers/7",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-04-19T05:25:03.235Z",
+    "modified": "2023-04-19T05:25:18.370Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "14015b68-1e0c-4ae7-a085-ab9ad17c17c9",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_get_supplier_orders 1",
+    "url": "localhost:8001/f/orderDetails/1",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-04-19T05:26:11.082Z",
+    "modified": "2023-04-19T05:26:28.365Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "8ba263b3-b853-4620-a48d-5a3fe740e4aa",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_get_supplier_orders 2",
+    "url": "localhost:8001/f/orderDetails/2",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-04-19T05:26:53.050Z",
+    "modified": "2023-04-19T05:27:00.653Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "a83e95ba-2b8b-4d2b-b24c-ecfd6f42bf44",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_get_product_reviews 1",
+    "url": "localhost:8001/f/reviews/1",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2023-04-19T05:27:21.154Z",
+    "modified": "2023-04-19T05:27:29.518Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3f90921e-10a3-4c67-9e27-8ccac217075f",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_get_product_reviews 2",
+    "url": "localhost:8001/f/reviews/2",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2023-04-19T05:27:52.870Z",
+    "modified": "2023-04-19T05:28:01.547Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "615ea37f-db53-4483-8da2-b1eb88f2968c",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_new_shipment 1",
+    "url": "localhost:8001/f/shipments",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2023-04-19T05:28:30.885Z",
+    "modified": "2023-04-19T05:33:37.080Z",
+>>>>>>> Stashed changes
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
+<<<<<<< Updated upstream
       "raw": "{\n  \"ProjectID\": 101,\n  \"Username\": \"marydarling\",\n  \"Hobby\": \"knitting\",\n  \"Hours\": 17,\n  \"ReviewID\": 3,\n  \"Photos\": \"https://photo.com\",\n  \"ProductsUsed\": 18\n}",
+=======
+      "raw": "{\n  \"OrderID\": 101,\n  \"CustomerID\": 5,\n  \"OrderDate\": \"2023-04-19\",\n  \"Price\": 12.99\n}",
+>>>>>>> Stashed changes
       "form": []
     },
     "tests": []
   },
   {
+<<<<<<< Updated upstream
     "_id": "79c0e5b9-7ab0-4a56-8828-8205db1297bd",
     "colId": "fb124c18-e75d-464d-934e-985352d44341",
     "containerId": "",
@@ -211,16 +312,32 @@
     "sortNum": 160000,
     "created": "2023-04-19T05:31:01.863Z",
     "modified": "2023-04-19T05:44:15.325Z",
+=======
+    "_id": "eab92d08-50d4-4be0-af34-bc7a2d1befcf",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_new_shipment 2",
+    "url": "localhost:8001/f/shipments",
+    "method": "POST",
+    "sortNum": 90000,
+    "created": "2023-04-19T05:39:09.274Z",
+    "modified": "2023-04-19T05:39:43.446Z",
+>>>>>>> Stashed changes
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
+<<<<<<< Updated upstream
       "raw": "{\n  \"ProjectID\": 102,\n  \"Username\": \"marydarling\",\n  \"Hobby\": \"crocheting\",\n  \"Hours\": 32,\n  \"ReviewID\": 16,\n  \"Photos\": \"https://photo_of_my_cat.com\",\n  \"ProductsUsed\": 47\n}",
+=======
+      "raw": "{\n  \"OrderID\": 500,\n  \"CustomerID\": 99,\n  \"OrderDate\": \"2000-02-14\",\n  \"Price\": 5.99\n}",
+>>>>>>> Stashed changes
       "form": []
     },
     "tests": []
   },
   {
+<<<<<<< Updated upstream
     "_id": "483b50b2-2755-4f94-a285-d7ab43ffd1f9",
     "colId": "fb124c18-e75d-464d-934e-985352d44341",
     "containerId": "",
@@ -230,16 +347,32 @@
     "sortNum": 170000,
     "created": "2023-04-19T05:39:36.887Z",
     "modified": "2023-04-19T05:48:48.499Z",
+=======
+    "_id": "8619b9dd-1c41-48a3-8100-4d4559af071e",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_update_product 1",
+    "url": "localhost:8001/f/products/1",
+    "method": "PUT",
+    "sortNum": 120000,
+    "created": "2023-04-19T05:45:27.693Z",
+    "modified": "2023-04-19T05:48:24.470Z",
+>>>>>>> Stashed changes
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
+<<<<<<< Updated upstream
       "raw": "{\n  \"Hours\": 21,\n  \"Photos\": \"https://photo.com\",\n  \"ProductsUsed\": 19\n}",
+=======
+      "raw": "{\n  \"UnitPrice\": 11.99,\n  \"UnitsInStock\": 5\n}",
+>>>>>>> Stashed changes
       "form": []
     },
     "tests": []
   },
   {
+<<<<<<< Updated upstream
     "_id": "a6e9c011-646d-46ed-9fbc-84a8ae51f7a5",
     "colId": "fb124c18-e75d-464d-934e-985352d44341",
     "containerId": "",
@@ -249,10 +382,22 @@
     "sortNum": 180000,
     "created": "2023-04-19T05:47:17.170Z",
     "modified": "2023-04-19T05:48:53.395Z",
+=======
+    "_id": "2c6e4540-fcbb-48a5-85db-562e34a7199a",
+    "colId": "fe8e83b1-746c-44ad-ba1b-8f080099a82f",
+    "containerId": "",
+    "name": "frank handle_update_product 2",
+    "url": "localhost:8001/f/products/5",
+    "method": "PUT",
+    "sortNum": 130000,
+    "created": "2023-04-19T05:51:18.113Z",
+    "modified": "2023-04-19T05:52:09.201Z",
+>>>>>>> Stashed changes
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
+<<<<<<< Updated upstream
       "raw": "{\n  \"Hours\": 4,\n  \"Photos\": \"https://photo_of_my_cat.com\",\n  \"ProductsUsed\": 75\n}",
       "form": []
     },
@@ -271,5 +416,11 @@
     "headers": [],
     "params": [],
     "tests": []
+=======
+      "raw": "{\n  \"UnitPrice\": 55.55,\n  \"UnitsInStock\": 555\n}",
+      "form": []
+    },
+    "tests": []
+>>>>>>> Stashed changes
   }
 ]
