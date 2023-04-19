@@ -20,7 +20,7 @@ def add_new_product():
     photos = the_data['Photos']
     manufacturingCountry = the_data['ManufacturingCountry']
 
-    beadID = the_data['BeadID']
+    # beadID = the_data['BeadID']
     unitsOnOrder = 0
     unitsInStock = the_data['UnitsInStock']
     supplierID = the_data['SupplierID']
@@ -36,14 +36,25 @@ def add_new_product():
     cursor.execute(query1)
     db.get_db().commit()
 
-    query2 = f''' 
+    query2 = f'''select BeadID from BeadProduct where ProductName = '{productName}';
+    '''
+
+    cursor.execute(query2)
+    db.get_db().commit()
+    the_data = cursor.fetchall()
+
+    beadID = 0
+    for row in the_data:
+        beadID = row[0]
+
+    query3 = f''' 
             INSERT INTO Products(BeadID, UnitsInStock, SupplierID, UnitsOnOrder)
             VALUES ('{beadID}', '{unitsInStock}', '{supplierID}', '{unitsOnOrder}');
         '''
   
-    current_app.logger.info(query2)
+    current_app.logger.info(query3)
 
-    cursor.execute(query2)
+    cursor.execute(query3)
     db.get_db().commit()
 
     return "Success!"
