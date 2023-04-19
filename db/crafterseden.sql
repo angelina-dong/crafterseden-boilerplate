@@ -171,12 +171,12 @@ CREATE TABLE IF NOT EXISTS OrderDetails
 
 CREATE TABLE IF NOT EXISTS Shipments
 (
-    OrderID         int PRIMARY KEY,
+    OrderID         int,
     ShippingAddress varchar(100) NOT NULL,
     Carrier         varchar(100) NOT NULL,
     TrackingID      int UNIQUE   NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(OrderID, TrackingID),
     FOREIGN KEY (OrderID)
         REFERENCES Orders (OrderID)
         ON UPDATE CASCADE ON DELETE RESTRICT
-
 );      

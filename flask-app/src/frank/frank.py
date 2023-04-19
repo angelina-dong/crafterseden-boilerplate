@@ -127,12 +127,12 @@ def get_reviews(productID):
     return the_response
 
 
-@frank.route('/shipments/<orderID>', methods = ['POST'])
-def create_shipment(orderID):
+@frank.route('/shipments', methods = ['POST'])
+def create_shipment():
     the_data = request.get_json()
     current_app.logger.info(the_data)
 
-    # orderID = the_data['OrderID']
+    orderID = the_data['OrderID']
     shippingAddress = the_data['ShippingAddress']
     carrier = the_data['Carrier']
     trackingID = the_data['TrackingID']

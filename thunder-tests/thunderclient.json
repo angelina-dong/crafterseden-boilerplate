@@ -451,16 +451,16 @@
     "colId": "96af9b90-8ba4-48a3-9219-e01ae88ecbfd",
     "containerId": "",
     "name": "frank create_shipment 1",
-    "url": "localhost:8001/f/shipments/101",
+    "url": "localhost:8001/f/shipments",
     "method": "POST",
     "sortNum": 140000,
     "created": "2023-04-19T07:40:11.347Z",
-    "modified": "2023-04-19T13:58:38.862Z",
+    "modified": "2023-04-19T14:50:58.014Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"ShippingAddress\": \"21 Forsyth St, Boston, MA 02115\",\n  \"Carrier\": \"Fedex\",\n  \"TrackingID\": 101\n}",
+      "raw": "{\n  \"OrderID\": 1,\n  \"ShippingAddress\": \"21 Forsyth St, Boston, MA 02115\",\n  \"Carrier\": \"Fedex\",\n  \"TrackingID\": 101\n}",
       "form": []
     },
     "tests": []
@@ -474,12 +474,12 @@
     "method": "POST",
     "sortNum": 150000,
     "created": "2023-04-19T07:43:08.446Z",
-    "modified": "2023-04-19T07:44:56.676Z",
+    "modified": "2023-04-19T14:51:48.388Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"OrderID\": 102,\n  \"CustomerID\": 11,\n  \"OrderDate\": \"2023-04-18\",\n  \"Price\": 19.47\n}",
+      "raw": "{\n  \"OrderID\": 4,\n  \"ShippingAddress\": \"7 Speare Pl, Boston, MA 02115\",\n  \"Carrier\": \"UPS\",\n  \"TrackingID\": 102\n}",
       "form": []
     },
     "tests": []
