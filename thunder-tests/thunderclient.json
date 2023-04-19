@@ -153,7 +153,7 @@
     "method": "POST",
     "sortNum": 120000,
     "created": "2023-04-19T05:17:49.395Z",
-    "modified": "2023-04-19T05:19:18.448Z",
+    "modified": "2023-04-19T05:44:11.490Z",
     "headers": [],
     "params": [],
     "body": {
@@ -172,7 +172,7 @@
     "method": "POST",
     "sortNum": 130000,
     "created": "2023-04-19T05:20:08.314Z",
-    "modified": "2023-04-19T05:21:04.448Z",
+    "modified": "2023-04-19T05:44:07.956Z",
     "headers": [],
     "params": [],
     "body": {
@@ -180,6 +180,96 @@
       "raw": "{\n  \"Username\": \"marydarling\",\n  \"Photos\": \"https://photo_of_my_cat.com\",\n  \"Rating\":4,\n  \"WrittenReview\": \"look at my cat playing with the yarn yall!\",\n  \"ReviewID\": 103,\n  \"ProductID\": 103\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "dc0294bf-6b46-4b1e-947e-72185c18471c",
+    "colId": "fb124c18-e75d-464d-934e-985352d44341",
+    "containerId": "",
+    "name": "mary add_new_project 1",
+    "url": "localhost:8001/m/projects",
+    "method": "POST",
+    "sortNum": 150000,
+    "created": "2023-04-19T05:28:50.829Z",
+    "modified": "2023-04-19T05:42:59.706Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"ProjectID\": 101,\n  \"Username\": \"marydarling\",\n  \"Hobby\": \"knitting\",\n  \"Hours\": 17,\n  \"ReviewID\": 3,\n  \"Photos\": \"https://photo.com\",\n  \"ProductsUsed\": 18\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "79c0e5b9-7ab0-4a56-8828-8205db1297bd",
+    "colId": "fb124c18-e75d-464d-934e-985352d44341",
+    "containerId": "",
+    "name": "mary add_new_project 2",
+    "url": "localhost:8001/m/projects",
+    "method": "POST",
+    "sortNum": 160000,
+    "created": "2023-04-19T05:31:01.863Z",
+    "modified": "2023-04-19T05:44:15.325Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"ProjectID\": 102,\n  \"Username\": \"marydarling\",\n  \"Hobby\": \"crocheting\",\n  \"Hours\": 32,\n  \"ReviewID\": 16,\n  \"Photos\": \"https://photo_of_my_cat.com\",\n  \"ProductsUsed\": 47\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "483b50b2-2755-4f94-a285-d7ab43ffd1f9",
+    "colId": "fb124c18-e75d-464d-934e-985352d44341",
+    "containerId": "",
+    "name": "mary update_project 1",
+    "url": "localhost:8001/m/projects/1",
+    "method": "PUT",
+    "sortNum": 170000,
+    "created": "2023-04-19T05:39:36.887Z",
+    "modified": "2023-04-19T05:48:48.499Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"Hours\": 21,\n  \"Photos\": \"https://photo.com\",\n  \"ProductsUsed\": 19\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a6e9c011-646d-46ed-9fbc-84a8ae51f7a5",
+    "colId": "fb124c18-e75d-464d-934e-985352d44341",
+    "containerId": "",
+    "name": "mary update project 2",
+    "url": "localhost:8001/m/projects/3",
+    "method": "PUT",
+    "sortNum": 180000,
+    "created": "2023-04-19T05:47:17.170Z",
+    "modified": "2023-04-19T05:48:53.395Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"Hours\": 4,\n  \"Photos\": \"https://photo_of_my_cat.com\",\n  \"ProductsUsed\": 75\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "3ba1b470-29fc-489c-b37f-d29496556d77",
+    "colId": "fb124c18-e75d-464d-934e-985352d44341",
+    "containerId": "",
+    "name": "mary delete_order 1",
+    "url": "localhost:8001/m/orders/1",
+    "method": "DELETE",
+    "sortNum": 190000,
+    "created": "2023-04-19T05:50:45.574Z",
+    "modified": "2023-04-19T05:51:55.533Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]

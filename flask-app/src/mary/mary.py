@@ -94,7 +94,7 @@ def add_new_review():
     writtenReview = the_data['WrittenReview']
     reviewID = the_data['ReviewID']
 
-    the_query = "insert into Projects (Username, Photos, Rating, WrittenReview, ReviewID, ProductID) values ("
+    the_query = "insert into Reviews (Username, Photos, Rating, WrittenReview, ReviewID, ProductID) values ("
     the_query += username + "','" 
     the_query += photos + "','" 
     the_query += str(rating) + "','" 
@@ -103,9 +103,7 @@ def add_new_review():
     the_query += str(productID) + ')'
    
     current_app.logger.info(the_query)
-    # cursor = db.get_db().cursor()
-    # cursor.execute(the_query)
-    # db.get_db().commit()
+ 
     return "Success!"
 
 @mary.route('/projects', methods=['GET'])
@@ -125,41 +123,53 @@ def get_project():
 @mary.route('/projects', methods=['POST'])
 def add_new_project():
     the_data = request.get_json()
+    current_app.logger.info(the_data)
+
+    projectid = the_data['ProjectID']
     username = the_data['Username']
     hobby = the_data['Hobby']
     hours = the_data['Hours']
     reviewID = the_data['ReviewID']
     photos = the_data['Photos']
     productsUsed = the_data['ProductsUsed']
-    current_app.logger.info(the_data)
-    the_query = "insert into Projects (Username, Hobby, Hours, ReviewID, Photos, ProductsUsed)"
-    the_query += "values ('" + str(username) + "', '" + str(hobby) + "','" + str(hours) + "','" + str(reviewID) + "','" + str(photos) + "','" + str(productsUsed) + ")"
+
+    the_query = "insert into Projects (ProjectID, Username, Hobby, Hours, ReviewID, Photos, ProductsUsed) values ("
+    the_query += str(projectid) + "','" 
+    the_query += username + "','" 
+    the_query += hobby + "','" 
+    the_query += str(hours) + "','" 
+    the_query += str(reviewID) + "','" 
+    the_query += photos + "','" 
+    the_query += str(productsUsed) + ')'
+   
     current_app.logger.info(the_query)
-    cursor = db.get_db().cursor()
-    cursor.execute(the_query)
-    db.get_db().commit()
+
     return "Success!"
 
 
 @mary.route('/projects/<projectid>', methods=['PUT'])
 def update_project(projectid):
     the_data = request.get_json()
+    current_app.logger.info(the_data)
+
     photos = the_data['Photos']
     hours = the_data['Hours']
     productsUsed = the_data['ProductsUsed']
-    current_app.logger.info(the_data)
-    the_query = "update Projects(Photos, Hours, ProductsUsed) "
-    the_query += "set Photos = '" + photos + "', Hours = '" + str(hours) + "', ProductsUsed = '" + str(productsUsed) + "where ProjectID = " + str(projectid) + "';'"
+
+    the_query = "update Projects(Photos, Hours, ProductsUsed) set Photos ="
+    the_query += photos + "', Hours = '" 
+    the_query += str(hours) + "', ProductsUsed = '" 
+    the_query += str(productsUsed) + "' where ProjectID = '" 
+    the_query += str(projectid) + "';'" 
+   
     current_app.logger.info(the_query)
-    cursor = db.get_db().cursor()
-    cursor.execute(the_query)
-    db.get_db().commit()
+
     return "Success!"
 
 @mary.route('/orders/<OrderID>', methods=['DELETE'])
 def delete_order(OrderID):
     cursor = db.get_db().cursor()
-    cursor.execute('delete from Orders WHERE OrderID =' + str(OrderID))
+    cursor.execute('delete from Orders WHERE OrderID = ' + str(OrderID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
