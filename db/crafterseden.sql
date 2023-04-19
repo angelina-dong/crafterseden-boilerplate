@@ -5,15 +5,18 @@ USE crafterseden;
 #  drop table YarnProduct, BeadProduct, PaintProduct, Products,
 #     Projects, Patterns, Reviews, Orders, OrderDetails, Customers, Suppliers, Shipments;
 
+
+USE crafterseden;
+
 CREATE TABLE IF NOT EXISTS Suppliers
 (
-    SupplierID bigint PRIMARY KEY AUTO_INCREMENT,
+    SupplierID int PRIMARY KEY AUTO_INCREMENT,
     Location   varchar(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Customers
 (
-    CustomerID bigint PRIMARY KEY AUTO_INCREMENT,
+    CustomerID int PRIMARY KEY AUTO_INCREMENT,
     Name       varchar(100) NOT NULL,
     Email      varchar(100) NOT NULL UNIQUE,
     Address    varchar(100) NOT NULL,
@@ -23,22 +26,22 @@ CREATE TABLE IF NOT EXISTS Customers
 
 CREATE TABLE IF NOT EXISTS YarnProduct
 (
-    YarnID               bigint PRIMARY KEY AUTO_INCREMENT,
+    YarnID               int PRIMARY KEY AUTO_INCREMENT,
     ProductName          varchar(100) NOT NULL,
     SkeinLength          numeric      NOT NULL,
     Price                numeric      NOT NULL,
-    Fiber                varchar(100) NOT NULL,
+    Fiber                numeric NOT NULL,
     Color                varchar(50)  NOT NULL,
-    YarnWeight           varchar(100) NOT NULL,
+    YarnWeight           numeric NOT NULL,
     NetWeight            numeric      NOT NULL,
     Brand                varchar(100) NOT NULL,
     ManufacturingCountry varchar(100) NOT NULL,
-    Photos               blob
+    Photos               varchar(100)
 );
 
 CREATE TABLE IF NOT EXISTS BeadProduct
 (
-    BeadID               bigint PRIMARY KEY AUTO_INCREMENT,
+    BeadID               int PRIMARY KEY AUTO_INCREMENT,
     ProductName          varchar(100) NOT NULL,
     Material             varchar(100) NOT NULL,
     Price                numeric      NOT NULL,
@@ -46,12 +49,12 @@ CREATE TABLE IF NOT EXISTS BeadProduct
     Size                 numeric      NOT NULL,
     Brand                varchar(100) NOT NULL,
     ManufacturingCountry varchar(100) NOT NULL,
-    Photos               blob
+    Photos               varchar(100)
 );
 
 CREATE TABLE IF NOT EXISTS PaintProduct
 (
-    PaintID              bigint PRIMARY KEY AUTO_INCREMENT,
+    PaintID              int PRIMARY KEY AUTO_INCREMENT,
     ProductName          varchar(100) NOT NULL,
     Base                 varchar(100) NOT NULL,
     Ingredients          varchar(500) NOT NULL,
@@ -60,18 +63,18 @@ CREATE TABLE IF NOT EXISTS PaintProduct
     FluidVolume          numeric      NOT NULL,
     Brand                varchar(100) NOT NULL,
     ManufacturingCountry varchar(100) NOT NULL,
-    Photos               blob
+    Photos               varchar(100)
 );
 
 CREATE TABLE IF NOT EXISTS Products
 (
-    ProductID    bigint PRIMARY KEY AUTO_INCREMENT,
-    YarnID       bigint,
-    BeadID       bigint,
-    PaintID      bigint,
+    ProductID    int PRIMARY KEY AUTO_INCREMENT,
+    YarnID       int,
+    BeadID       int,
+    PaintID      int,
     UnitsInStock int NOT NULL,
-    DateAdded    datetime DEFAULT CURRENT_TIMESTAMP,
-    SupplierID   bigint NOT NULL,
+    DateAdded    date NOT NULL,
+    SupplierID   int NOT NULL,
     UnitsOnOrder int NOT NULL,
     FOREIGN KEY (YarnID)
         REFERENCES YarnProduct (YarnID)
@@ -89,16 +92,15 @@ CREATE TABLE IF NOT EXISTS Products
 
 CREATE TABLE IF NOT EXISTS Reviews
 (
-    ReviewID      bigint AUTO_INCREMENT PRIMARY KEY,
-    -- ProductID     bigint,
+    ReviewID      int AUTO_INCREMENT PRIMARY KEY,
+    ProductID     int,
     Username      varchar(50) NOT NULL,
-    Photos        blob,
+    Photos        varchar(100),
     Rating        int         NOT NULL,
     WrittenReview varchar(500),
-    -- PRIMARY KEY(ReviewID, ProductID)
-    -- FOREIGN KEY(ProductID)
-    --     REFERENCES Products(ProductID)
-    --     ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY(ProductID)
+        REFERENCES Products(ProductID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (Username)
         REFERENCES Customers (Username)
         ON UPDATE CASCADE ON DELETE CASCADE
@@ -106,13 +108,13 @@ CREATE TABLE IF NOT EXISTS Reviews
 
 CREATE TABLE IF NOT EXISTS Projects
 (
-    ProjectID    bigint PRIMARY KEY AUTO_INCREMENT,
+    ProjectID    int PRIMARY KEY AUTO_INCREMENT,
     Username     varchar(50)  NOT NULL,
     Hobby        varchar(100) NOT NULL,
     Hours        numeric      NOT NULL,
-    ReviewID     bigint,
-    Photos       blob,
-    ProductsUsed bigint,
+    ReviewID     int,
+    Photos       varchar(100),
+    ProductsUsed int,
     FOREIGN KEY (Username)
         REFERENCES Customers (Username)
         ON UPDATE CASCADE ON DELETE CASCADE,
@@ -124,12 +126,12 @@ CREATE TABLE IF NOT EXISTS Projects
 
 CREATE TABLE IF NOT EXISTS Patterns
 (
-    ProjectID     bigint PRIMARY KEY AUTO_INCREMENT,
+    ProjectID     int PRIMARY KEY AUTO_INCREMENT,
     Name          varchar(100) NOT NULL,
     Username      varchar(50)  NOT NULL,
     Difficulty    int          NOT NULL,
     EstimatedTime numeric,
-    Material      bigint,
+    Material      int,
     FOREIGN KEY (ProjectID)
         REFERENCES Projects (ProjectID)
         ON UPDATE CASCADE ON DELETE CASCADE,
@@ -141,9 +143,9 @@ CREATE TABLE IF NOT EXISTS Patterns
 
 CREATE TABLE IF NOT EXISTS Orders
 (
-    OrderID    bigint PRIMARY KEY AUTO_INCREMENT,
-    CustomerID bigint                             NOT NULL,
-    OrderDate  datetime                           NOT NULL,
+    OrderID    int PRIMARY KEY AUTO_INCREMENT,
+    CustomerID int                             NOT NULL,
+    OrderDate  date                           NOT NULL,
     Price      numeric                            NOT NULL,
     FOREIGN KEY (CustomerID)
         REFERENCES Customers (CustomerID)
@@ -151,9 +153,9 @@ CREATE TABLE IF NOT EXISTS Orders
 
 CREATE TABLE IF NOT EXISTS OrderDetails
 (
-    OrderID   bigint PRIMARY KEY,
+    OrderID   int PRIMARY KEY,
     UnitPrice numeric NOT NULL,
-    Products  bigint  NOT NULL,
+    Products  int  NOT NULL,
     Quantity  int     NOT NULL,
     Discount  numeric NOT NULL,
     FOREIGN KEY (OrderID)
@@ -164,11 +166,13 @@ CREATE TABLE IF NOT EXISTS OrderDetails
 
 CREATE TABLE IF NOT EXISTS Shipments
 (
-    OrderID         bigint PRIMARY KEY,
+    OrderID         int PRIMARY KEY,
     ShippingAddress varchar(100) NOT NULL,
     Carrier         varchar(100) NOT NULL,
-    TrackingID      bigint UNIQUE   NOT NULL AUTO_INCREMENT,
+    TrackingID      int UNIQUE   NOT NULL AUTO_INCREMENT,
     FOREIGN KEY (OrderID)
         REFERENCES Orders (OrderID)
 );
 
+
+SELECT * FROM Projects
