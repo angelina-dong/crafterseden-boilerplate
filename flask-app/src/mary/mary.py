@@ -21,7 +21,7 @@ def get_product_details(productID):
 
 @mary.route('/yarnProduct/weight/<weight>', methods=['GET'])
 def filter_by_weight(weight):
-    query = 'SELECT * FROM YarnProduct WHERE YarnWeight = ' + str(weight) + ' ORDER BY ProductName ASC'
+    query = 'SELECT * FROM YarnProduct WHERE YarnWeight = ' + str(weight) +' ORDER BY ProductName ASC'
     
     cursor = db.get_db().cursor()
     cursor.execute(query)
@@ -82,22 +82,30 @@ def get_past_orders(customerID):
 
     return jsonify(json_data)
 
-@mary.route('/reviews/<productID>', methods=['POST'])
-def add_new_review(productID):
+@mary.route('/reviews', methods=['POST'])
+def add_new_review():
     the_data = request.get_json()
+    current_app.logger.info(the_data)
+
     username = the_data['Username']
     photos = the_data['Photos']
     rating = the_data['Rating']
+    productID = the_data['ProductID']
     writtenReview = the_data['WrittenReview']
     reviewID = the_data['ReviewID']
-    current_app.logger.info(the_data)
-    the_query = "insert into Projects (Username, Photos, Rating, WrittenReview, ReviewID, ProductID)"
-    the_query += "values ('" + str(username) + "', '" + str(photos) + "', '" + str(rating) + "', '" + str(writtenReview) + "', '" + str(reviewID) + "', " + str(productID) + ")"
-    the_data = request.get_json()
+
+    the_query = "insert into Projects (Username, Photos, Rating, WrittenReview, ReviewID, ProductID) values ("
+    the_query += username + "','" 
+    the_query += photos + "','" 
+    the_query += str(rating) + "','" 
+    the_query += writtenReview + "','" 
+    the_query += str(reviewID) + "','" 
+    the_query += str(productID) + ')'
+   
     current_app.logger.info(the_query)
-    cursor = db.get_db().cursor()
-    cursor.execute(the_query)
-    db.get_db().commit()
+    # cursor = db.get_db().cursor()
+    # cursor.execute(the_query)
+    # db.get_db().commit()
     return "Success!"
 
 @mary.route('/projects', methods=['GET'])
@@ -135,13 +143,13 @@ def add_new_project():
 
 @mary.route('/projects/<projectid>', methods=['PUT'])
 def update_project(projectid):
+    the_data = request.get_json()
     photos = the_data['Photos']
     hours = the_data['Hours']
     productsUsed = the_data['ProductsUsed']
     current_app.logger.info(the_data)
-    the_query = "update Projects"
-    the_query += "set Photos = '" + str(photos) + "', Hours = '" + str(hours) + "', ProductsUsed = '" + str(productsUsed) + ")"
-    the_query += "where ProjectID =" + projectid
+    the_query = "update Projects(Photos, Hours, ProductsUsed) "
+    the_query += "set Photos = '" + photos + "', Hours = '" + str(hours) + "', ProductsUsed = '" + str(productsUsed) + "where ProjectID = " + str(projectid) + "';'"
     current_app.logger.info(the_query)
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
@@ -149,9 +157,9 @@ def update_project(projectid):
     return "Success!"
 
 @mary.route('/orders/<OrderID>', methods=['DELETE'])
-def delete_order(orderID):
+def delete_order(OrderID):
     cursor = db.get_db().cursor()
-    cursor.execute('delete from Orders WHERE OrderID =' + str(orderID))
+    cursor.execute('delete from Orders WHERE OrderID =' + str(OrderID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
