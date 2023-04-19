@@ -42,6 +42,7 @@ def handle_new_product():
     cursor = db.get_db().cursor()
     cursor.executetue(query)
     db.get_db().commit()
+    return "Success!"
 
 
 @frank.route('/products/<productID>', methods = ['PUT'])
@@ -53,6 +54,7 @@ def handle_update_product(productID):
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
+    return "Success!"
 
 
 @frank.route('/products/<productID>', methods = ['DELETE'])
@@ -61,6 +63,7 @@ def handle_remove_product(productID):
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
+    return "Success!"
 
 
 @frank.route('/products/inStock/suppliers/<supplierID>', methods = ['GET'])
@@ -129,6 +132,7 @@ def handle_new_shipment():
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
+    return "Success!"
 
 
 @frank.route('/orders/<orderID>', methods = ['DELETE'])
@@ -137,4 +141,5 @@ def handle_remove_order(orderID):
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
+    return "Success!"
 

@@ -109,6 +109,7 @@ def add_new_review():
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
     db.get_db().commit()
+    return "Success!"
 
 @mary.route('/projects', methods=['GET'])
 def get_project():
@@ -140,6 +141,7 @@ def add_new_project():
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
     db.get_db().commit()
+    return "Success!"
 
 
 @mary.route('/projects/<projectid>', methods=['PUT'])
@@ -155,6 +157,7 @@ def update_project(projectid):
     cursor = db.get_db().cursor()
     cursor.execute(the_query)
     db.get_db().commit()
+    return "Success!"
 
 @mary.route('/orders/<OrderID>', methods=['DELETE'])
 def delete_order(orderID):
@@ -165,7 +168,4 @@ def delete_order(orderID):
     theData = cursor.fetchall()
     for row in theData:
         json_data.append(dict(zip(row_headers, row)))
-    the_response = make_response(jsonify(json_data))
-    the_response.status_code = 200
-    the_response.mimetype = 'application/json'
-    return the_response
+    return "Success!"

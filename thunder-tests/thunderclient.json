@@ -40,5 +40,19 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "027617a5-c16c-4b14-ba0a-970b4ac7a1c1",
+    "colId": "fb124c18-e75d-464d-934e-985352d44341",
+    "containerId": "",
+    "name": "mary get_product_details",
+    "url": "localhost:8001/m/products/",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-04-19T03:28:02.536Z",
+    "modified": "2023-04-19T03:29:38.752Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
