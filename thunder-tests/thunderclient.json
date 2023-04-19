@@ -281,12 +281,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-04-19T06:32:35.403Z",
-    "modified": "2023-04-19T06:46:46.025Z",
+    "modified": "2023-04-19T15:59:45.247Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"BeadID\": 101,\n  \"ProductName\": \"Glass Bead\",\n  \"Material\": \"Glass\",\n  \"Price\": 9.99,\n  \"Color\": \"Green\",\n  \"Size\": 4,\n  \"Brand\": \"Juicy Lime\",\n  \"ManufacturingCountry\": \"Japan\",\n  \"Photos\": \"https://photo_of_my_beads.com\",\n  \"ProductID\": 101,\n  \"UnitsInStock\": 12,\n  \"SupplierID\": 5\n}",
+      "raw": "{\n  \"BeadID\": 101,\n  \"ProductName\": \"Glass Bead\",\n  \"Material\": \"Glass\",\n  \"Price\": 9.99,\n  \"Color\": \"Green\",\n  \"Size\": 4,\n  \"Brand\": \"Juicy Lime\",\n  \"ManufacturingCountry\": \"Japan\",\n  \"Photos_A\": \"https://photo_of_my_beads.com\",\n  \"ProductID\": 101,\n  \"UnitsInStock\": 12,\n  \"SupplierID\": 5\n}",
       "form": []
     },
     "tests": []
@@ -300,12 +300,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2023-04-19T06:53:02.614Z",
-    "modified": "2023-04-19T06:54:11.930Z",
+    "modified": "2023-04-19T15:59:56.053Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"BeadID\": 102,\n  \"ProductName\": \"Plastic Bead\",\n  \"Material\": \"Plastic\",\n  \"Price\": 2.99,\n  \"Color\": \"Blue\",\n  \"Size\": 8,\n  \"Brand\": \"Ocean Blue\",\n  \"ManufacturingCountry\": \"Austria\",\n  \"Photos\": \"https://photo_of_my__blue_beads.com\",\n  \"ProductID\": 102,\n  \"UnitsInStock\": 30,\n  \"SupplierID\": 5\n}",
+      "raw": "{\n  \"BeadID\": 102,\n  \"ProductName\": \"Plastic Bead\",\n  \"Material\": \"Plastic\",\n  \"Price\": 2.99,\n  \"Color\": \"Blue\",\n  \"Size\": 8,\n  \"Brand\": \"Ocean Blue\",\n  \"ManufacturingCountry\": \"Austria\",\n  \"Photos_A\": \"https://photo_of_my__blue_beads.com\",\n  \"ProductID\": 102,\n  \"UnitsInStock\": 30,\n  \"SupplierID\": 5\n}",
       "form": []
     },
     "tests": []
@@ -319,12 +319,12 @@
     "method": "PUT",
     "sortNum": 30000,
     "created": "2023-04-19T06:55:13.802Z",
-    "modified": "2023-04-19T13:44:27.549Z",
+    "modified": "2023-04-19T15:44:39.358Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"UnitsInStock\": 4\n}",
+      "raw": "{\n  \"UnitsInStock_U\": 4\n}",
       "form": []
     },
     "tests": []
@@ -338,12 +338,12 @@
     "method": "PUT",
     "sortNum": 40000,
     "created": "2023-04-19T06:57:35.707Z",
-    "modified": "2023-04-19T13:44:44.424Z",
+    "modified": "2023-04-19T15:44:48.693Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"UnitsInStock\": 28\n}",
+      "raw": "{\n  \"UnitsInStock_U\": 28\n}",
       "form": []
     },
     "tests": []
@@ -502,12 +502,12 @@
     "_id": "c42de4d5-398b-4365-b84c-2ecfc3027c39",
     "colId": "fb124c18-e75d-464d-934e-985352d44341",
     "containerId": "",
-    "name": "frank remove_order 2",
-    "url": "localhost:8001/f/orders/2",
+    "name": "mary delete_order 2",
+    "url": "localhost:8001/m/orders/2",
     "method": "DELETE",
     "sortNum": 200000,
     "created": "2023-04-19T07:47:43.849Z",
-    "modified": "2023-04-19T07:47:59.824Z",
+    "modified": "2023-04-19T15:38:51.563Z",
     "headers": [],
     "params": [],
     "tests": []

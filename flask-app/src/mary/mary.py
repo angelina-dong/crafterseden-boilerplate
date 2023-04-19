@@ -125,7 +125,6 @@ def add_new_project():
     the_data = request.get_json()
     current_app.logger.info(the_data)
 
-    # projectid = the_data['ProjectID']
     username = the_data['Username']
     productsUsed = the_data['ProductsUsed']
     hobby = the_data['Hobby']

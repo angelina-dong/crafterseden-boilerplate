@@ -17,7 +17,7 @@ def add_new_product():
     color = the_data['Color']
     material = the_data['Material']
     price = the_data['Price']
-    photos = the_data['Photos']
+    photos = the_data['Photos_A']
     manufacturingCountry = the_data['ManufacturingCountry']
 
     # beadID = the_data['BeadID']
@@ -65,7 +65,7 @@ def update_product(productID):
     the_data = request.get_json()
     current_app.logger.info(the_data)
 
-    unitsInStock = the_data['UnitsInStock']
+    unitsInStock = the_data['UnitsInStock_U']
 
     the_query = f''' 
             update Products
