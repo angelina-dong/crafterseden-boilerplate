@@ -149,6 +149,7 @@ CREATE TABLE IF NOT EXISTS Orders
     Price      numeric                            NOT NULL,
     FOREIGN KEY (CustomerID)
         REFERENCES Customers (CustomerID)
+        ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS OrderDetails
@@ -159,10 +160,12 @@ CREATE TABLE IF NOT EXISTS OrderDetails
     Quantity  int     NOT NULL,
     Discount  numeric NOT NULL,
     FOREIGN KEY (OrderID)
-        REFERENCES Orders (OrderID),
+        REFERENCES Orders (OrderID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (Products)
         REFERENCES Products (ProductID)
-);
+        ON UPDATE CASCADE ON DELETE RESTRICT
+);     
 
 CREATE TABLE IF NOT EXISTS Shipments
 (
@@ -172,7 +175,6 @@ CREATE TABLE IF NOT EXISTS Shipments
     TrackingID      int UNIQUE   NOT NULL AUTO_INCREMENT,
     FOREIGN KEY (OrderID)
         REFERENCES Orders (OrderID)
-);
+        ON UPDATE CASCADE ON DELETE CASCADE
 
-
-SELECT * FROM Projects
+);      
