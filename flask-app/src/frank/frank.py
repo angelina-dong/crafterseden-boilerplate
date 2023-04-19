@@ -6,42 +6,46 @@ from src import db
 frank = Blueprint('frank', __name__)
 
 @frank.route('/products', methods = ['POST'])
-def handle_new_product():
-    name = request.json['name']
+def add_new_product():
+    the_data = request.get_json()
+    current_app.logger.info(the_data)
+
     unitsOnOrder = 0
-    unitsInStock = request.json['unitsInStock']
-    # dateAdded = request.json['dateAdded']
-    supplierID = request.json['supplierID']
-    name = request.json['name']
-    brand = request.json['brand']
-    size = request.json['size']
-    color = request.json['color']
-    material = request.json['material']
-    unitPrice = request.json['unitPrice']
-    photos = request.json['photos']
-    manufacturingCountry = request.json['manufacturingCountry']
+    beadID = the_data['BeadID']
+    productID = the_data['ProductID']
+    productName = the_data['ProductName']
+    unitsInStock = the_data['UnitsInStock']
+    supplierID = the_data.['SupplierID']
+    brand = the_data['Brand']
+    size = the_data['Size']
+    color = the_data['Color']
+    material = the_data['Material']
+    price = the_data['Price']
+    photos = the_data['Photos']
+    manufacturingCountry = the_data['ManufacturingCountry']
 
-    query = 'insert into BeadProduct (Brand, Size, Color, Material, UnitPrice, Photos, ManufacturingCountry, Name)\n'
-    query += 'values (\'' + str(brand) + '\', ' + str(size) + ', \'' + str(color) + '\', \'' + str(material) + '\', '
-    query += str(unitPrice) + ', \'' + str(photos) + '\', \'' + str(manufacturingCountry) + '\', \'' + str(name) + '\');'
-    cursor = db.get_db().cursor()
-    cursor.execute(query)
-    db.get_db().commit()
+    query1 = 'insert into BeadProduct (BeadID, ProductName, Material, Price, Color, Size, Brand, ManufacturingCountry, Photos) values ('
+    query1 += str(beadID) + "','" 
+    query1 += productName + "','" 
+    query1 += material + "','" 
+    query1 += str(price) + "','" 
+    query1 += color + "','"
+    query1 += str(size) + "','" 
+    query1 += brand + "','"  
+    query1 += manufacturingCountry + "','"
+    query1 += photos + ')' 
 
-    query = 'select BeadID from BeadProduct where name = ' + name + ';'
-
-    cursor.execute(query)
-    db.get_db().commit()
-    the_data = cursor.fetchall()
-    beadID = 0
-    for row in the_data:
-        beadID = row[0]
+    current_app.logger.info(query1)
     
-    query = 'insert into Products (SupplierID, UnitsOnOrder, UnitsInStock, DateAdded, BeadID)\n'
-    query += 'values (\'' + str(supplierID) + '\', ' + str(unitsOnOrder) + ', ' + str(unitsInStock) + ', ' + str(beadID) + ');'
-    cursor = db.get_db().cursor()
-    cursor.execute(query)
-    db.get_db().commit()
+    query2 = 'insert into Products (ProductID, SupplierID, UnitsOnOrder, UnitsInStock, BeadID) values ('
+    query2 += str(productID) + "','"
+    query2 += str(supplierID) + "','" 
+    query2 += str(unitsOnOrder) + "','"
+    query2 += str(unitsInStock) + "','"
+    query2 += str(beadID) + ');'
+  
+    current_app.logger.info(query2)
+
     return "Success!"
 
 
