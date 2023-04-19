@@ -40,7 +40,7 @@ def handle_new_product():
     query = 'insert into Products (SupplierID, UnitsOnOrder, UnitsInStock, DateAdded, BeadID)\n'
     query += 'values (\'' + supplierID + '\', ' + str(unitsOnOrder) + ', ' + str(unitsInStock) + ', ' + str(beadID) + ');'
     cursor = db.get_db().cursor()
-    cursor.executetue(query)
+    cursor.execute(query)
     db.get_db().commit()
     return "Success!"
 
