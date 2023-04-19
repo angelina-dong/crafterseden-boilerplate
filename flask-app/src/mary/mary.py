@@ -103,6 +103,10 @@ def add_new_review():
     the_query += str(productID) + ')'
    
     current_app.logger.info(the_query)
+
+    cursor = db.get_db().cursor()
+    cursor.execute(the_query)
+    db.get_db().commit()
  
     return "Success!"
 
@@ -144,6 +148,10 @@ def add_new_project():
    
     current_app.logger.info(the_query)
 
+    cursor = db.get_db().cursor()
+    cursor.execute(the_query)
+    db.get_db().commit()
+
     return "Success!"
 
 
@@ -164,15 +172,16 @@ def update_project(projectid):
    
     current_app.logger.info(the_query)
 
+    cursor = db.get_db().cursor()
+    cursor.execute(the_query)
+    db.get_db().commit()
+
     return "Success!"
 
 @mary.route('/orders/<OrderID>', methods=['DELETE'])
 def delete_order(OrderID):
+    query = 'delete from Orders WHERE OrderID = ' + str(OrderID) + ';'
     cursor = db.get_db().cursor()
-    cursor.execute('delete from Orders WHERE OrderID = ' + str(OrderID))
-    row_headers = [x[0] for x in cursor.description]
-    json_data = []
-    theData = cursor.fetchall()
-    for row in theData:
-        json_data.append(dict(zip(row_headers, row)))
+    cursor.execute(query)
+    db.get_db().commit()
     return "Success!"
