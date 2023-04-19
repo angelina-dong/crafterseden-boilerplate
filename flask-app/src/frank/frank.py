@@ -6,16 +6,12 @@ from src import db
 frank = Blueprint('frank', __name__)
 
 @frank.route('/products', methods = ['POST'])
+
 def add_new_product():
     the_data = request.get_json()
     current_app.logger.info(the_data)
-
-    unitsOnOrder = 0
-    beadID = the_data['BeadID']
-    productID = the_data['ProductID']
+    
     productName = the_data['ProductName']
-    unitsInStock = the_data['UnitsInStock']
-    supplierID = the_data['SupplierID']
     brand = the_data['Brand']
     size = the_data['Size']
     color = the_data['Color']
@@ -24,29 +20,26 @@ def add_new_product():
     photos = the_data['Photos']
     manufacturingCountry = the_data['ManufacturingCountry']
 
-    query1 = 'insert into BeadProduct (BeadID, ProductName, Material, Price, Color, Size, Brand, ManufacturingCountry, Photos) values ('
-    query1 += str(beadID) + "','" 
-    query1 += productName + "','" 
-    query1 += material + "','" 
-    query1 += str(price) + "','" 
-    query1 += color + "','"
-    query1 += str(size) + "','" 
-    query1 += brand + "','"  
-    query1 += manufacturingCountry + "','"
-    query1 += photos + ')' 
+    beadID = the_data['BeadID']
+    unitsOnOrder = 0
+    unitsInStock = the_data['UnitsInStock']
+    supplierID = the_data['SupplierID']
+
+    query1 = f''' 
+            INSERT INTO BeadProduct(ProductName, Material, Price, Color, Size, Brand, ManufacturingCountry, Photos)
+            VALUES ('{productName}', '{material}', '{price}', '{color}', '{size}', '{brand}', '{manufacturingCountry}', '{photos}');
+        '''
 
     current_app.logger.info(query1)
 
     cursor = db.get_db().cursor()
     cursor.execute(query1)
     db.get_db().commit()
-    
-    query2 = 'insert into Products (ProductID, SupplierID, UnitsOnOrder, UnitsInStock, BeadID) values ('
-    query2 += str(productID) + "','"
-    query2 += str(supplierID) + "','" 
-    query2 += str(unitsOnOrder) + "','"
-    query2 += str(unitsInStock) + "','"
-    query2 += str(beadID) + ');'
+
+    query2 = f''' 
+            INSERT INTO Products(BeadID, UnitsInStock, SupplierID, UnitsOnOrder)
+            VALUES ('{beadID}', '{unitsInStock}', '{supplierID}', '{unitsOnOrder}');
+        '''
   
     current_app.logger.info(query2)
 
@@ -55,17 +48,19 @@ def add_new_product():
 
     return "Success!"
 
-
 @frank.route('/products/<productID>', methods = ['PUT'])
 def update_product(productID):
 
     the_data = request.get_json()
     current_app.logger.info(the_data)
 
-    price = the_data['Price']
     unitsInStock = the_data['UnitsInStock']
 
-    the_query = 'update Products set Price = ' + str(price) + ', UnitsInStock = ' + str(unitsInStock) + ' where ProductID = ' + str(productID) + ';'
+    the_query = f''' 
+            update Products
+            set UnitsInStock = '{unitsInStock}'
+            where ProductID = '{productID}';
+        '''
     
     current_app.logger.info(the_query)
 
@@ -75,7 +70,6 @@ def update_product(productID):
 
     return "Success!"
 
-
 @frank.route('/products/<productID>', methods = ['DELETE'])
 def remove_product(productID):
 
@@ -84,7 +78,6 @@ def remove_product(productID):
     current_app.logger.info(the_query)
 
     return "Success!"
-
 
 @frank.route('/products/inStock/suppliers/<supplierID>', methods = ['GET'])
 def get_in_stock(supplierID):
@@ -101,8 +94,6 @@ def get_in_stock(supplierID):
     the_response.mimetype = 'application/json'
     return the_response
 
-
-
 @frank.route('/orderDetails/<supplierID>', methods = ['GET'])
 def get_orders(supplierID):
     cursor = db.get_db().cursor()
@@ -117,8 +108,6 @@ def get_orders(supplierID):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
-
-
 
 @frank.route('/reviews/<productID>', methods = ['GET'])
 def get_reviews(productID):
@@ -138,21 +127,25 @@ def get_reviews(productID):
     return the_response
 
 
-@frank.route('/shipments', methods = ['POST'])
-def create_shipment():
-    orderID = request.json['OrderID']
-    customerID = request.json['CustomerID']
-    orderDate = request.json['OrderDate']
-    price = request.json['Price']
+@frank.route('/shipments/<orderID>', methods = ['POST'])
+def create_shipment(orderID):
+    the_data = request.get_json()
+    current_app.logger.info(the_data)
 
-    query = 'insert into Shipments (OrderID, CustomerID, OrderDate, Price) values('
-    query += str(orderID) + "','" 
-    query += str(customerID) + "','"
-    query += str(orderDate) + "','" 
-    query += str(price) + ');'
+    # orderID = the_data['OrderID']
+    shippingAddress = the_data['ShippingAddress']
+    carrier = the_data['Carrier']
+    trackingID = the_data['TrackingID']
+
+    the_query = f''' 
+            INSERT INTO Shipments(OrderID, ShippingAddress, Carrier, TrackingID)
+            VALUES ('{orderID}', '{shippingAddress}', '{carrier}', '{trackingID}')
+        '''
+
+    current_app.logger.info(the_query)
 
     cursor = db.get_db().cursor()
-    cursor.execute(query)
+    cursor.execute(the_query)
     db.get_db().commit()
     return "Success!"
 

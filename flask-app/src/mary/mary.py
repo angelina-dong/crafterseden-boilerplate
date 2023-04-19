@@ -92,15 +92,11 @@ def add_new_review():
     rating = the_data['Rating']
     productID = the_data['ProductID']
     writtenReview = the_data['WrittenReview']
-    reviewID = the_data['ReviewID']
 
-    the_query = "insert into Reviews (Username, Photos, Rating, WrittenReview, ReviewID, ProductID) values ("
-    the_query += username + "','" 
-    the_query += photos + "','" 
-    the_query += str(rating) + "','" 
-    the_query += writtenReview + "','" 
-    the_query += str(reviewID) + "','" 
-    the_query += str(productID) + ')'
+    the_query = f''' 
+            INSERT INTO Reviews(Username, Photos, Rating, WrittenReview, ProductID)
+            VALUES ('{username}', '{photos}', '{rating}', '{writtenReview}', '{productID}')
+        '''
    
     current_app.logger.info(the_query)
 
@@ -129,23 +125,20 @@ def add_new_project():
     the_data = request.get_json()
     current_app.logger.info(the_data)
 
-    projectid = the_data['ProjectID']
+    # projectid = the_data['ProjectID']
     username = the_data['Username']
+    productsUsed = the_data['ProductsUsed']
     hobby = the_data['Hobby']
     hours = the_data['Hours']
     reviewID = the_data['ReviewID']
     photos = the_data['Photos']
-    productsUsed = the_data['ProductsUsed']
+    
 
-    the_query = "insert into Projects (ProjectID, Username, Hobby, Hours, ReviewID, Photos, ProductsUsed) values ("
-    the_query += str(projectid) + "','" 
-    the_query += username + "','" 
-    the_query += hobby + "','" 
-    the_query += str(hours) + "','" 
-    the_query += str(reviewID) + "','" 
-    the_query += photos + "','" 
-    the_query += str(productsUsed) + ')'
-   
+    the_query = f''' 
+            INSERT INTO Projects(Username, Hobby, Hours, ReviewID, Photos, ProductsUsed)
+            VALUES ('{username}', '{hobby}', '{hours}', '{reviewID}', '{photos}', '{productsUsed}')
+        '''
+
     current_app.logger.info(the_query)
 
     cursor = db.get_db().cursor()
@@ -164,11 +157,11 @@ def update_project(projectid):
     hours = the_data['Hours']
     productsUsed = the_data['ProductsUsed']
 
-    the_query = "update Projects(Photos, Hours, ProductsUsed) set Photos ="
-    the_query += photos + "', Hours = '" 
-    the_query += str(hours) + "', ProductsUsed = '" 
-    the_query += str(productsUsed) + "' where ProjectID = '" 
-    the_query += str(projectid) + "';'" 
+    the_query = f''' 
+            update Projects
+            set Hours = '{hours}', Photos = '{photos}', ProductsUsed = '{productsUsed}'
+            where ProjectID = '{projectid}';
+        '''
    
     current_app.logger.info(the_query)
 

@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS Products
     BeadID       int,
     PaintID      int,
     UnitsInStock int NOT NULL,
-    DateAdded    date NOT NULL,
+    DateAdded    datetime DEFAULT CURRENT_TIMESTAMP,
     SupplierID   int NOT NULL,
     UnitsOnOrder int NOT NULL,
     FOREIGN KEY (YarnID)
@@ -100,10 +100,10 @@ CREATE TABLE IF NOT EXISTS Reviews
     WrittenReview varchar(500),
     FOREIGN KEY(ProductID)
         REFERENCES Products(ProductID)
-        ON UPDATE CASCADE ON DELETE CASCADE,
+        ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY (Username)
         REFERENCES Customers (Username)
-        ON UPDATE CASCADE ON DELETE CASCADE
+        ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS Projects
@@ -119,9 +119,11 @@ CREATE TABLE IF NOT EXISTS Projects
         REFERENCES Customers (Username)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (ReviewID)
-        REFERENCES Reviews (ReviewID),
+        REFERENCES Reviews (ReviewID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (ProductsUsed)
         REFERENCES Products (ProductID)
+        ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 CREATE TABLE IF NOT EXISTS Patterns
@@ -175,6 +177,6 @@ CREATE TABLE IF NOT EXISTS Shipments
     TrackingID      int UNIQUE   NOT NULL AUTO_INCREMENT,
     FOREIGN KEY (OrderID)
         REFERENCES Orders (OrderID)
-        ON UPDATE CASCADE ON DELETE CASCADE
+        ON UPDATE CASCADE ON DELETE RESTRICT
 
 );      
