@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS Products
 CREATE TABLE IF NOT EXISTS Reviews
 (
     ReviewID      int AUTO_INCREMENT PRIMARY KEY,
-    ProductID     int,
+    ProductID     int NOT NULL,
     Username      varchar(50) NOT NULL,
     Photos        varchar(100),
     Rating        int         NOT NULL,

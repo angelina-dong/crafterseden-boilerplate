@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
@@ -21,7 +21,7 @@ def get_product_details(productID):
 
 @mary.route('/yarnProduct/weight/<weight>', methods=['GET'])
 def filter_by_weight(weight):
-    query = 'SELECT * FROM YarnProduct WHERE YarnWeight = ' + str(weight) +' ORDER BY ProductName ASC'
+    query = 'SELECT * FROM YarnProduct WHERE YarnWeight = ' + str(weight) + ' ORDER BY ProductName ASC'
     
     cursor = db.get_db().cursor()
     cursor.execute(query)
@@ -82,8 +82,8 @@ def get_past_orders(customerID):
 
     return jsonify(json_data)
 
-@mary.route('/reviews/<productid>', methods=['POST'])
-def add_new_review():
+@mary.route('/reviews/<productID>', methods=['POST'])
+def add_new_review(productID):
     the_data = request.get_json()
     username = the_data['Username']
     photos = the_data['Photos']
@@ -91,8 +91,8 @@ def add_new_review():
     writtenReview = the_data['WrittenReview']
     reviewID = the_data['ReviewID']
     current_app.logger.info(the_data)
-    the_query = "insert into Projects (Username, Photos, Eating, WrittenReview, ReviewID)"
-    the_query += "values ('" + str(username) + "', '" + str(photos) + "','" + str(rating) + "','" + str(writtenReview) + "','" + str(reviewID) + ")"
+    the_query = "insert into Projects (Username, Photos, Rating, WrittenReview, ReviewID, ProductID)"
+    the_query += "values ('" + str(username) + "', '" + str(photos) + "', '" + str(rating) + "', '" + str(writtenReview) + "', '" + str(reviewID) + "', " + str(productID) + ")"
     the_data = request.get_json()
     current_app.logger.info(the_query)
     cursor = db.get_db().cursor()
