@@ -229,12 +229,12 @@
     "method": "PUT",
     "sortNum": 170000,
     "created": "2023-04-19T05:39:36.887Z",
-    "modified": "2023-04-19T12:59:48.739Z",
+    "modified": "2023-04-19T15:26:48.418Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"Hours\": 21,\n  \"Photos\": \"https://photo.com\",\n  \"ProductsUsed\": 19\n}",
+      "raw": "{\n  \"hoursU\": 21,\n  \"photosU\": \"https://photo.com\",\n  \"productsUsedU\": 19\n}",
       "form": []
     },
     "tests": []
@@ -248,12 +248,12 @@
     "method": "PUT",
     "sortNum": 180000,
     "created": "2023-04-19T05:47:17.170Z",
-    "modified": "2023-04-19T12:59:55.829Z",
+    "modified": "2023-04-19T15:26:33.795Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"Hours\": 4,\n  \"Photos\": \"https://photo_of_my_cat.com\",\n  \"ProductsUsed\": 75\n}",
+      "raw": "{\n  \"hoursU\": 4,\n  \"photosU\": \"https://photo_of_my_cat.com\",\n  \"productsUsedU\": 75\n}",
       "form": []
     },
     "tests": []

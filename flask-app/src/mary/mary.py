@@ -153,9 +153,9 @@ def update_project(projectid):
     the_data = request.get_json()
     current_app.logger.info(the_data)
 
-    photos = the_data['Photos']
-    hours = the_data['Hours']
-    productsUsed = the_data['ProductsUsed']
+    photos = the_data['photosU']
+    hours = the_data['hoursU']
+    productsUsed = the_data['productsUsedU']
 
     the_query = f''' 
             update Projects
