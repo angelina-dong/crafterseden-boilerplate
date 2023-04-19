@@ -1,5 +1,6 @@
 USE crafterseden;
 
+SET AUTOCOMMIT=0;
 INSERT INTO Suppliers(SupplierID,Location) VALUES
  (1,'United States')
 ,(2,'Puerto Rico')
@@ -101,7 +102,9 @@ INSERT INTO Suppliers(SupplierID,Location) VALUES
 ,(98,'Norway')
 ,(99,'Peru')
 ,(100,'Russia');
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO Customers(CustomerID,Name,Email,Address,Phone,Username) VALUES
  (1,'Dyana Kirdsch','dkirdsch0@nature.com','03 Village Junction','425-671-1087','dkirdsch0')
 ,(2,'Delila Veracruysse','dveracruysse1@sciencedaily.com','9216 Sunbrook Street','185-190-3134','dveracruysse1')
@@ -203,7 +206,9 @@ INSERT INTO Customers(CustomerID,Name,Email,Address,Phone,Username) VALUES
 ,(98,'Kingsly Galbraeth','kgalbraeth2p@bigcartel.com','31 Alpine Lane','257-917-5396','kgalbraeth2p')
 ,(99,'Lemuel Donegan','ldonegan2q@abc.net.au','85989 Hintze Center','366-297-0619','ldonegan2q')
 ,(100,'Roxine Pardon','rpardon2r@php.net','619 Lunder Junction','643-799-7217','rpardon2r');
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO YarnProduct(YarnID,ProductName,SkeinLength,Price,Fiber,Color,YarnWeight,NetWeight,Brand,ManufacturingCountry,Photos) VALUES
  (1,'Sole - Dover, Whole, Fresh',496,24.91,6,'Teal',5,192,'Riffpedia','Russia','http://dummyimage.com/109x100.png/ff4444/ffffff')
 ,(2,'Pepsi, 355 Ml',257,94.47,1,'Aquamarine',2,149,'Vinder','Iran','http://dummyimage.com/192x100.png/cc0000/ffffff')
@@ -305,7 +310,9 @@ INSERT INTO YarnProduct(YarnID,ProductName,SkeinLength,Price,Fiber,Color,YarnWei
 ,(98,'Tilapia - Fillets',543,51.07,1,'Orange',5,245,'Bluezoom','China','http://dummyimage.com/106x100.png/ff4444/ffffff')
 ,(99,'Bread - Roll, Calabrese',532,59.82,7,'Aquamarine',2,178,'Thoughtworks','China','http://dummyimage.com/142x100.png/dddddd/000000')
 ,(100,'Beans - Yellow',239,17.14,2,'Orange',3,145,'Skiba','Brazil','http://dummyimage.com/208x100.png/5fa2dd/ffffff');
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO BeadProduct(BeadID,ProductName,Material,Price,Color,Size,Brand,ManufacturingCountry,Photos) VALUES
  (1,'Cauliflower','Aluminum',84.38,'Crimson',10,'Jatri','Czech Republic','http://dummyimage.com/243x100.png/dddddd/000000')
 ,(2,'Longos - Chicken Caeser Salad','Plastic',51.29,'Crimson',10,'Quinu','Indonesia','http://dummyimage.com/246x100.png/cc0000/ffffff')
@@ -407,7 +414,9 @@ INSERT INTO BeadProduct(BeadID,ProductName,Material,Price,Color,Size,Brand,Manuf
 ,(98,'Turkey Tenderloin Frozen','Aluminum',10.84,'Red',12,'Katz','Indonesia','http://dummyimage.com/115x100.png/dddddd/000000')
 ,(99,'Pastry - Cherry Danish - Mini','Glass',89.74,'Orange',8,'Trilith','Croatia','http://dummyimage.com/169x100.png/cc0000/ffffff')
 ,(100,'Beer - Sleemans Honey Brown','Vinyl',53.04,'Maroon',10,'Aivee','United Arab Emirates','http://dummyimage.com/101x100.png/5fa2dd/ffffff');
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO PaintProduct(PaintID,ProductName,Base,Ingredients,Price,Color,FluidVolume,Brand,ManufacturingCountry,Photos) VALUES
  (1,'Juice - Orange 1.89l','MEJ','Guinea Pig Hair and Dander',29.26,'Turquoise',18,'Realbridge','New Zealand','http://dummyimage.com/105x100.png/5fa2dd/ffffff')
 ,(2,'Wine - Maipo Valle Cabernet','BIQ','ENSULIZOLE,OCTINOXATE, OCTISALATE, OCTOCRYLENE,OXYBENZONE,TITANIUM DIOXIDE',64.42,'Green',29,'Skinder','Lebanon','http://dummyimage.com/153x100.png/cc0000/ffffff')
@@ -509,7 +518,9 @@ INSERT INTO PaintProduct(PaintID,ProductName,Base,Ingredients,Price,Color,FluidV
 ,(98,'Puree - Blackcurrant','BSJ','Brompheniramine maleate, Dextromethorphan HBr, Phenylephrine HCl',19.88,'Mauv',31,'Brainlounge','China','http://dummyimage.com/183x100.png/dddddd/000000')
 ,(99,'Cookie Double Choco','MPC','Felodipine',32.26,'Yellow',1,'Layo','Canada','http://dummyimage.com/193x100.png/dddddd/000000')
 ,(100,'Sprouts - Bean','CPT','sertraline hydrochloride',65.32,'Indigo',90,'Edgewire','Brazil','http://dummyimage.com/248x100.png/cc0000/ffffff');
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO Products(ProductID,YarnID,BeadID,PaintID,UnitsInStock,DateAdded,SupplierID,UnitsOnOrder) VALUES
  (1,1,NULL,NULL,36,'2023-02-09',55,10)
 ,(2,2,NULL,NULL,96,'2023-03-31',22,8)
@@ -611,7 +622,9 @@ INSERT INTO Products(ProductID,YarnID,BeadID,PaintID,UnitsInStock,DateAdded,Supp
 ,(98,NULL,NULL,31,55,'2022-06-11',100,8)
 ,(99,NULL,NULL,32,49,'2023-01-19',55,2)
 ,(100,NULL,NULL,33,15,'2023-02-27',50,6);
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO Reviews(ReviewID,ProductID,Username,Photos,Rating,WrittenReview) VALUES
  (1,23,'kdurber18','http://dummyimage.com/212x100.png/ff4444/ffffff',5,'pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia')
 ,(2,22,'sdallowaye','http://dummyimage.com/173x100.png/5fa2dd/ffffff',4,'accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa')
@@ -713,7 +726,9 @@ INSERT INTO Reviews(ReviewID,ProductID,Username,Photos,Rating,WrittenReview) VAL
 ,(98,5,'nlux8','http://dummyimage.com/217x100.png/dddddd/000000',3,'tempus sit amet sem fusce consequat nulla nisl nunc nisl duis')
 ,(99,96,'kgalbraeth2p','http://dummyimage.com/221x100.png/cc0000/ffffff',3,'vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec')
 ,(100,24,'barbucklex','http://dummyimage.com/164x100.png/ff4444/ffffff',5,'eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare');
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO Projects(ProjectID,Username,Hobby,Hours,ReviewID,Photos,ProductsUsed) VALUES
  (1,'fmila1h','n/a',14,10,'http://dummyimage.com/143x100.png/5fa2dd/ffffff',25)
 ,(2,'mslite13','Health Care',7,27,'http://dummyimage.com/207x100.png/cc0000/ffffff',7)
@@ -815,7 +830,9 @@ INSERT INTO Projects(ProjectID,Username,Hobby,Hours,ReviewID,Photos,ProductsUsed
 ,(98,'tlyffe5','Transportation',44,39,'http://dummyimage.com/247x100.png/dddddd/000000',1)
 ,(99,'cfatkin10','Consumer Non-Durables',32,9,'http://dummyimage.com/244x100.png/5fa2dd/ffffff',11)
 ,(100,'kgalbraeth2p','Consumer Services',17,95,'http://dummyimage.com/178x100.png/5fa2dd/ffffff',5);
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO Patterns(ProjectID,Name,Username,Difficulty,EstimatedTime,Material) VALUES
  (1,'Gazelle, thomson''s','elissaman1b',3,16,7)
 ,(2,'Wallaroo, common','wwakey',4,45,25)
@@ -917,7 +934,9 @@ INSERT INTO Patterns(ProjectID,Name,Username,Difficulty,EstimatedTime,Material) 
 ,(98,'Red-capped cardinal','edimsdale7',5,42,3)
 ,(99,'Salmon, sockeye','adavana1j',3,26,2)
 ,(100,'Rhea, common','pstorks1v',2,47,15);
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO Orders(OrderID,CustomerID,OrderDate,Price) VALUES
  (1,58,'2023-02-09',6.93)
 ,(2,95,'2022-05-21',70.25)
@@ -1018,9 +1037,10 @@ INSERT INTO Orders(OrderID,CustomerID,OrderDate,Price) VALUES
 ,(97,100,'2023-04-05',50.12)
 ,(98,75,'2022-09-06',43.43)
 ,(99,62,'2023-02-06',54.53)
-,(100,68,'2022-11-24',6.88)
+,(100,68,'2022-11-24',6.88);
+COMMIT;
 
-
+SET AUTOCOMMIT=0;
 INSERT INTO OrderDetails(OrderID,UnitPrice,Products,Quantity,Discount) VALUES
  (1,77.9,34,2,5.73)
 ,(2,33.98,13,8,6.31)
@@ -1122,7 +1142,9 @@ INSERT INTO OrderDetails(OrderID,UnitPrice,Products,Quantity,Discount) VALUES
 ,(98,48.62,16,10,7.56)
 ,(99,80.98,6,5,4.66)
 ,(100,55.84,22,4,2.19);
+COMMIT;
 
+SET AUTOCOMMIT=0;
 INSERT INTO Shipments(OrderID,ShippingAddress,Carrier,TrackingID) VALUES
  (1,'8 Iowa Circle','Kwideo',1)
 ,(2,'96733 Luster Park','Topicshots',2)
@@ -1224,3 +1246,4 @@ INSERT INTO Shipments(OrderID,ShippingAddress,Carrier,TrackingID) VALUES
 ,(98,'06 Sutteridge Pass','Yodoo',98)
 ,(99,'54838 Paget Drive','Shufflebeat',99)
 ,(100,'04 Melrose Terrace','Fanoodle',100);
+COMMIT;

@@ -22,8 +22,8 @@ def handle_new_product():
     manufacturingCountry = request.json['manufacturingCountry']
 
     query = 'insert into BeadProduct (Brand, Size, Color, Material, UnitPrice, Photos, ManufacturingCountry, Name)\n'
-    query += 'values (\'' + brand + '\', ' + str(size) + ', \'' + color + '\', \'' + material + '\', '
-    query += str(unitPrice) + ', \'' + photos + '\', \'' + manufacturingCountry + '\', \'' + name + '\');'
+    query += 'values (\'' + str(brand) + '\', ' + str(size) + ', \'' + str(color) + '\', \'' + str(material) + '\', '
+    query += str(unitPrice) + ', \'' + str(photos) + '\', \'' + str(manufacturingCountry) + '\', \'' + str(name) + '\');'
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
@@ -38,7 +38,7 @@ def handle_new_product():
         beadID = row[0]
     
     query = 'insert into Products (SupplierID, UnitsOnOrder, UnitsInStock, DateAdded, BeadID)\n'
-    query += 'values (\'' + supplierID + '\', ' + str(unitsOnOrder) + ', ' + str(unitsInStock) + ', ' + str(beadID) + ');'
+    query += 'values (\'' + str(supplierID) + '\', ' + str(unitsOnOrder) + ', ' + str(unitsInStock) + ', ' + str(beadID) + ');'
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
@@ -128,7 +128,7 @@ def handle_new_shipment():
     price = request.json['price']
 
     query = 'insert into Shipments (OrderID, CustomerID, OrderDate, Price)\n'
-    query += 'values (' + str(orderID) + ', ' + str(customerID) + ', \'' + orderDate + '\', ' + str(price) + ');'
+    query += 'values (' + str(orderID) + ', ' + str(customerID) + ', \'' + str(orderDate) + '\', ' + str(price) + ');'
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()

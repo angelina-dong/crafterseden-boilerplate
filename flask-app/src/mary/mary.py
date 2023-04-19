@@ -42,12 +42,7 @@ def filter_by_weight(weight):
 
 @mary.route('/yarnProduct/fiber/<fiber>', methods=['GET'])
 def filter_by_fiber(fiber):
-    query = '''
-            SELECT *
-            FROM YarnProduct
-            WHERE Fiber = fiber
-            ORDER BY ProductName ASC
-        '''
+    query = 'SELECT * FROM YarnProduct WHERE Fiber = ' + str(fiber) + ' ORDER BY ProductName ASC'
     
     cursor = db.get_db().cursor()
     cursor.execute(query)
@@ -68,13 +63,7 @@ def filter_by_fiber(fiber):
 
 @mary.route('/orders/<customerID>', methods=['GET'])
 def get_past_orders(customerID):
-    query = '''
-            SELECT *
-            FROM Orders 
-            JOIN OrderDetails
-            WHERE CustomerID = customerID
-            ORDER BY OrderDate DESC
-        '''
+    query = 'SELECT * FROM Orders JOIN OrderDetails WHERE CustomerID = ' + str(customerID) + ' ORDER BY OrderDate DESC'
     
     cursor = db.get_db().cursor()
     cursor.execute(query)
