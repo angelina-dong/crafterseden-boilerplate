@@ -112,25 +112,6 @@
     "tests": []
   },
   {
-    "_id": "00a7be9a-6c4c-4bbd-860d-919e6e712c50",
-    "colId": "fb124c18-e75d-464d-934e-985352d44341",
-    "containerId": "",
-    "name": "mary add_new_review 1",
-    "url": "localhost:8001/m/reviews",
-    "method": "POST",
-    "sortNum": 115000,
-    "created": "2023-04-19T04:15:15.326Z",
-    "modified": "2023-04-19T12:32:31.263Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"Username\": \"marydarling\",\n  \"Photos\": \"totally a photo\",\n  \"Rating\": 5,\n  \"WrittenReview\": \"very fresh\",\n  \"ProductID\": 1\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
     "_id": "319850e6-279e-4ea5-81c4-281468ada710",
     "colId": "fb124c18-e75d-464d-934e-985352d44341",
     "containerId": "",
@@ -148,7 +129,7 @@
     "_id": "bf614c92-9e01-4c76-a38e-5e743b664d88",
     "colId": "fb124c18-e75d-464d-934e-985352d44341",
     "containerId": "",
-    "name": "mary add_new_review 2",
+    "name": "mary add_new_review 1",
     "url": "localhost:8001/m/reviews",
     "method": "POST",
     "sortNum": 120000,
@@ -167,7 +148,7 @@
     "_id": "015d04c1-93ea-41d6-a59e-db8e6c8f9828",
     "colId": "fb124c18-e75d-464d-934e-985352d44341",
     "containerId": "",
-    "name": "mary add_new_review 3",
+    "name": "mary add_new_review 2",
     "url": "localhost:8001/m/reviews",
     "method": "POST",
     "sortNum": 130000,
@@ -353,11 +334,11 @@
     "colId": "96af9b90-8ba4-48a3-9219-e01ae88ecbfd",
     "containerId": "",
     "name": "frank remove_product 1",
-    "url": "localhost:8001/f/products/101",
+    "url": "localhost:8001/f/products/1",
     "method": "DELETE",
     "sortNum": 165000,
     "created": "2023-04-19T07:00:15.834Z",
-    "modified": "2023-04-19T13:38:46.486Z",
+    "modified": "2023-04-20T04:02:52.821Z",
     "headers": [],
     "params": [],
     "tests": []

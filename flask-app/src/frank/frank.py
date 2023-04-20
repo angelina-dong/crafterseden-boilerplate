@@ -87,6 +87,9 @@ def remove_product(productID):
     the_query = 'delete from Products where ProductID = ' + str(productID) + ';'
     
     current_app.logger.info(the_query)
+    cursor = db.get_db().cursor()
+    cursor.execute(the_query)
+    db.get_db().commit()
 
     return "Success!"
 
@@ -164,8 +167,10 @@ def create_shipment():
 @frank.route('/orders/<orderID>', methods = ['DELETE'])
 def remove_order(orderID):
     query = 'delete from Orders where OrderID = ' + str(orderID) + ';'
+
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
+    
     return "Success!"
 
