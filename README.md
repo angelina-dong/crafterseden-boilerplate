@@ -20,11 +20,10 @@ Important** - you need Docker Desktop installed
 6. Start the containers with `docker compose up`.  To run in detached mode, run `docker compose up -d`.
 
 ## How to use
-This repo is intended to be accompanied by an AppSmith interface in which two user personas, one cutomer and one supplier, can navigate through the mock Crafters' Eden pages. The repo can be found here https://github.com/angelina-dong/cs3200-crafterseden-appsmith.
+This repo is intended to be accompanied by an AppSmith interface in which two user personas, one cutomer and one supplier, can navigate through the mock Crafters' Eden pages. The repo can be found [here](https://github.com/angelina-dong/cs3200-crafterseden-appsmith).
 
 ## Collaborators
-1. Angelina Dong https://github.com/angelina-dong
-2. Shrutika Kumar https://github.com/shrukumar
-3. Natalie Daly https://github.com/nataliepdaly
-4. Kaira Vo https://github.com/kvough
-
+1. [Angelina Dong](https://github.com/angelina-dong)
+2. [Shrutika Kumar](https://github.com/shrukumar)
+3. [Natalie Daly](https://github.com/nataliepdaly)
+4. [Kaira Vo](https://github.com/kvough)
